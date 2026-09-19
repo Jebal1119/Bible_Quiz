@@ -1,0 +1,3359 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>தமிழ் வேதாகம வார்த்தை சவால்</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Mukta+Malar:wght@400;600;700;800&family=Noto+Serif+Tamil:wght@600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #090c19;
+      --gold-primary: #f6c042;
+      --gold-secondary: #d97706;
+      --gold-glow: rgba(246, 192, 66, 0.45);
+      --card-bg: rgba(18, 24, 46, 0.88);
+      --card-border: rgba(246, 192, 66, 0.35);
+      --text-white: #ffffff;
+      --font-tamil: 'Mukta Malar', sans-serif;
+      --font-serif: 'Noto Serif Tamil', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      font-family: var(--font-tamil);
+      background: radial-gradient(circle at 50% 15%, #1c234a 0%, #090c19 100%);
+      color: var(--text-white);
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* God Rays Background */
+    .bg-rays {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: 
+        radial-gradient(ellipse at 50% 0%, rgba(246, 192, 66, 0.15) 0%, transparent 65%),
+        repeating-conic-gradient(from 0deg at 50% -10%, rgba(255, 255, 255, 0.02) 0deg 12deg, transparent 12deg 24deg);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Top Bar */
+    header.top-bar {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 30px;
+      background: rgba(9, 12, 25, 0.9);
+      border-bottom: 1px solid var(--card-border);
+      backdrop-filter: blur(8px);
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--gold-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-shadow: 0 0 12px var(--gold-glow);
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-tool {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-family: var(--font-tamil);
+      transition: all 0.2s;
+    }
+
+    .btn-tool:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: var(--gold-primary);
+    }
+
+    /* Main Container */
+    main.main-viewport {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .view-screen {
+      display: none;
+      width: 100%;
+      max-width: 960px;
+      animation: zoomIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .view-screen.active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* SCREEN 1: Welcome Screen */
+    .home-card {
+      background: var(--card-bg);
+      border: 2px solid var(--card-border);
+      border-radius: 24px;
+      padding: 50px 40px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 35px var(--gold-glow);
+      width: 100%;
+      max-width: 740px;
+    }
+
+    .bible-emblem {
+      font-size: 5rem;
+      margin-bottom: 15px;
+      animation: floatBadge 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 25px var(--gold-primary));
+    }
+
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .home-title {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--gold-primary);
+      text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+      margin-bottom: 8px;
+    }
+
+    .home-sub {
+      font-size: 1.4rem;
+      color: #cbd5e1;
+      margin-bottom: 35px;
+    }
+
+    .primary-btn {
+      background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
+      color: #090c19;
+      border: none;
+      padding: 16px 42px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      font-family: var(--font-tamil);
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 14px 35px rgba(245, 158, 11, 0.6);
+    }
+
+    /* SCREEN 2: Name Input Screen */
+    .name-card {
+      background: var(--card-bg);
+      border: 2px solid var(--card-border);
+      border-radius: 22px;
+      padding: 45px 35px;
+      width: 100%;
+      max-width: 550px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.7);
+    }
+
+    .screen-heading {
+      font-size: 2rem;
+      color: var(--gold-primary);
+      font-family: var(--font-serif);
+      margin-bottom: 25px;
+    }
+
+    .input-box {
+      width: 100%;
+      padding: 16px 20px;
+      font-size: 1.4rem;
+      font-family: var(--font-tamil);
+      border-radius: 12px;
+      border: 2px solid var(--gold-secondary);
+      background: rgba(9, 12, 25, 0.95);
+      color: #fff;
+      text-align: center;
+      outline: none;
+      margin-bottom: 25px;
+    }
+
+    .input-box:focus {
+      border-color: #facc15;
+      box-shadow: 0 0 20px var(--gold-glow);
+    }
+
+    /* SCREEN 3: Category Selection */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      width: 100%;
+    }
+
+    .cat-card {
+      background: var(--card-bg);
+      border: 2px solid var(--card-border);
+      border-radius: 20px;
+      padding: 35px 20px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .cat-card:hover {
+      transform: translateY(-6px) scale(1.04);
+      border-color: var(--gold-primary);
+      box-shadow: 0 16px 35px rgba(245, 158, 11, 0.3);
+    }
+
+    .cat-icon {
+      font-size: 3.8rem;
+      margin-bottom: 12px;
+    }
+
+    .cat-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .cat-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--gold-primary);
+    }
+
+    /* SCREEN 4: Question Arena */
+    .arena-box {
+      background: var(--card-bg);
+      border: 2px solid var(--card-border);
+      border-radius: 24px;
+      padding: 30px 40px;
+      width: 100%;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px var(--gold-glow);
+    }
+
+    .arena-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .player-tag {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--gold-primary);
+    }
+
+    .q-number-tag {
+      font-size: 1.25rem;
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 5px 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .pts-counter-tag {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #facc15;
+    }
+
+    /* Timer Widget */
+    .timer-tag {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1.5px solid rgba(56, 189, 248, 0.4);
+      padding: 5px 18px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+      transition: all 0.3s;
+    }
+
+    .timer-tag.urgent {
+      color: #f87171;
+      border-color: #ef4444;
+      background: rgba(239, 68, 68, 0.2);
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.45);
+      animation: timerPulse 0.5s infinite alternate;
+    }
+
+    @keyframes timerPulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.06); }
+    }
+
+    .timer-progress-track {
+      width: 100%;
+      height: 7px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 4px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .timer-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981 0%, #f59e0b 70%, #ef4444 100%);
+      width: 100%;
+      transition: width 1s linear;
+    }
+
+    /* Category Statement Banner */
+    .type-statement-banner {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: #fef08a;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: 12px;
+      padding: 10px 25px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 25px;
+      text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+    }
+
+    /* Word Letters Layout */
+    .words-wrapper {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 30px;
+      min-height: 85px;
+      align-items: center;
+    }
+
+    .word-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .char-box {
+      width: 65px;
+      height: 75px;
+      background: linear-gradient(180deg, #18213f 0%, #0d1224 100%);
+      border: 2px solid var(--gold-primary);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.3rem;
+      font-weight: 800;
+      font-family: var(--font-tamil);
+      color: transparent;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .char-box.revealed {
+      background: linear-gradient(180deg, #f59e0b 0%, #b45309 100%);
+      color: #090c19;
+      border-color: #fef08a;
+      transform: scale(1.06);
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.7);
+    }
+
+    /* 3 Clue Buttons Stack */
+    .clues-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 25px;
+      width: 100%;
+    }
+
+    .clue-btn-card {
+      background: rgba(13, 18, 36, 0.9);
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      border-radius: 14px;
+      padding: 14px 20px;
+      text-align: left;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      cursor: not-allowed;
+      opacity: 0.65;
+    }
+
+    .clue-btn-card.unlocked-btn {
+      border-color: #f59e0b;
+      cursor: pointer;
+      background: rgba(245, 158, 11, 0.12);
+      opacity: 1;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
+    }
+
+    .clue-btn-card.unlocked-btn:hover {
+      background: rgba(245, 158, 11, 0.25);
+      transform: translateX(4px);
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
+    }
+
+    .clue-btn-card.revealed-clue {
+      border-color: #10b981;
+      background: rgba(16, 185, 129, 0.12);
+      opacity: 1;
+      cursor: default;
+    }
+
+    .clue-card-head {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--gold-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .clue-content-text {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.5;
+    }
+
+    /* Operator Control Strip */
+    .operator-strip {
+      border-top: 1px dashed rgba(255, 255, 255, 0.2);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .op-action-group {
+      display: flex;
+      gap: 16px;
+    }
+
+    .btn-correct {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #fff;
+      border: none;
+      padding: 14px 34px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      border-radius: 12px;
+      cursor: pointer;
+      font-family: var(--font-tamil);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+      transition: all 0.2s;
+    }
+
+    .btn-correct:hover:not(:disabled) {
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    .btn-wrong {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: #fff;
+      border: none;
+      padding: 14px 34px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      border-radius: 12px;
+      cursor: pointer;
+      font-family: var(--font-tamil);
+      box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+      transition: all 0.2s;
+    }
+
+    .btn-wrong:hover:not(:disabled) {
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    /* Reveal Bottom Card */
+    .answer-feedback-card {
+      display: none;
+      margin-top: 20px;
+      background: rgba(9, 12, 25, 0.95);
+      border: 2px solid var(--gold-primary);
+      border-radius: 16px;
+      padding: 22px;
+      width: 100%;
+      animation: zoomIn 0.3s;
+    }
+
+    .feedback-banner {
+      font-size: 1.8rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .feedback-banner.correct { color: #34d399; }
+    .feedback-banner.wrong { color: #f87171; }
+
+    .scripture-ref {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--gold-primary);
+      margin-bottom: 8px;
+    }
+
+    .scripture-desc {
+      font-size: 1.15rem;
+      color: #e2e8f0;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    .btn-next-q {
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      color: #fff;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1.25rem;
+      font-weight: 800;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: var(--font-tamil);
+      transition: all 0.2s;
+    }
+
+    .btn-next-q:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+    }
+
+    /* Validation Message */
+    .validation-msg {
+      color: #f87171;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-top: -15px;
+      margin-bottom: 20px;
+      animation: shake 0.3s;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+
+    /* Screen 5: Prize & Result */
+    .prize-card {
+      background: var(--card-bg);
+      border: 2px solid var(--gold-primary);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 35px var(--gold-glow);
+      max-width: 760px;
+      width: 100%;
+    }
+
+    .breakdown-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      width: 100%;
+      margin: 15px 0 20px 0;
+    }
+
+    .breakdown-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .breakdown-card .q-title {
+      font-size: 0.95rem;
+      color: #94a3b8;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .breakdown-card .q-score {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #facc15;
+    }
+
+    .prize-circle {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 4px solid var(--gold-primary);
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.2) 0%, rgba(9, 12, 25, 0.9) 100%);
+      box-shadow: 0 0 30px var(--gold-glow);
+    }
+
+    .score-big-text {
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .prize-badge-box {
+      background: rgba(245, 158, 11, 0.15);
+      border: 2px solid var(--gold-primary);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 25px;
+    }
+
+    .prize-badge-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #fef08a;
+      margin-bottom: 6px;
+    }
+
+    /* Toast Notification */
+    .game-toast {
+      position: fixed;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(239, 68, 68, 0.95);
+      color: #fff;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-size: 1.25rem;
+      font-weight: 800;
+      z-index: 150;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      display: none;
+      pointer-events: none;
+      border: 2px solid #fecaca;
+      animation: zoomIn 0.25s;
+    }
+
+    .game-toast.info {
+      background: rgba(16, 185, 129, 0.95);
+      border-color: #a7f3d0;
+    }
+
+    /* Modals & Leaderboard UI */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(6px);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop.open { display: flex; }
+
+    .modal-window {
+      background: #0d1224;
+      border: 2px solid var(--gold-primary);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 650px;
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 25px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+    }
+
+    .lb-header-status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 12px 18px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(246, 192, 66, 0.25);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      margin-left: 8px;
+    }
+    .status-badge.active { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid #10b981; }
+    .status-badge.ending { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid #f59e0b; }
+    .status-badge.ended { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444; }
+
+    .lb-controls-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .lb-search-input {
+      flex: 1;
+      min-width: 200px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      background: rgba(9, 12, 25, 0.9);
+      color: #fff;
+      font-family: var(--font-tamil);
+      outline: none;
+      font-size: 0.95rem;
+    }
+    .lb-search-input:focus { border-color: var(--gold-primary); }
+
+    .lb-filter-btn {
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      cursor: pointer;
+      font-family: var(--font-tamil);
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .lb-filter-btn.active {
+      background: var(--gold-primary);
+      color: #090c19;
+      font-weight: 800;
+      border-color: var(--gold-primary);
+    }
+
+    .lb-section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--gold-primary);
+      margin: 18px 0 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .podium-box {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .podium-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(246, 192, 66, 0.3);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+    }
+    .podium-card.gold { border-color: #facc15; background: rgba(250, 204, 21, 0.12); }
+    .podium-card.silver { border-color: #cbd5e1; background: rgba(203, 213, 225, 0.12); }
+    .podium-card.bronze { border-color: #fb923c; background: rgba(251, 146, 60, 0.12); }
+    .podium-rank { font-size: 1.8rem; margin-bottom: 4px; }
+    .podium-name { font-weight: 800; font-size: 1.1rem; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .podium-score { color: #facc15; font-weight: 800; font-size: 1.2rem; }
+
+    .lb-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+    .lb-table th {
+      text-align: left;
+      padding: 8px 10px;
+      background: rgba(246, 192, 66, 0.12);
+      color: var(--gold-primary);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+    }
+    .lb-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .lb-table tr:hover td { background: rgba(255, 255, 255, 0.04); }
+
+    .config-group {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .radio-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    /* Confetti Canvas */
+    #confettiCanvas {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 99;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confettiCanvas"></canvas>
+  <div class="bg-rays"></div>
+  <div id="gameToast" class="game-toast"></div>
+
+  <!-- Header -->
+  <header class="top-bar">
+    <div class="brand-title">
+      <span>📖</span>
+      <span>தமிழ் வேதாகம சவால்</span>
+    </div>
+    <div class="top-actions">
+      <button class="btn-tool" id="btnSound">🔊 ஒலி: ஆன்</button>
+      <button class="btn-tool" id="btnLB">🏆 தரவரிசை</button>
+      <button class="btn-tool" id="btnConfig">⚙️ அமைப்புகள்</button>
+      <button class="btn-tool" id="btnFull">⛶ Full Screen</button>
+    </div>
+  </header>
+
+  <main class="main-viewport">
+
+    <!-- VIEW 1: HOME SCREEN -->
+    <section id="viewHome" class="view-screen active">
+      <div class="home-card">
+        <div class="bible-emblem">📖 ✨</div>
+        <h1 class="home-title">தமிழ் வேதாகம சவால்</h1>
+        <p class="home-sub">"வேதாகம வார்த்தையை கண்டுபிடிப்போம்!"</p>
+        <button class="primary-btn" id="btnStartHome">▶ தொடங்கலாம்</button>
+      </div>
+    </section>
+
+    <!-- VIEW 2: NAME INPUT -->
+    <section id="viewName" class="view-screen">
+      <div class="name-card">
+        <h2 class="screen-heading">👤 உங்கள் பெயர்</h2>
+        <input type="text" id="inputName" class="input-box" placeholder="பெயரை உள்ளிடுங்கள்..." autocomplete="off" />
+        <div id="nameValidationMsg" class="validation-msg" style="display:none;">தயவுசெய்து உங்கள் பெயரை உள்ளிடுங்கள்!</div>
+        <button class="primary-btn" id="btnProceedName">தொடரவும் / விளையாடலாம் →</button>
+      </div>
+    </section>
+
+    <!-- VIEW 3: CATEGORY SELECTION -->
+    <section id="viewCategory" class="view-screen">
+      <h2 class="screen-heading">பிரிவைத் தேர்ந்தெடுக்கவும்</h2>
+      <div class="cat-grid">
+        <div class="cat-card" data-cat="kids">
+          <div class="cat-icon">👧</div>
+          <div class="cat-title">குழந்தைகள்</div>
+          <div class="cat-badge">எளிதான நிலை</div>
+        </div>
+        <div class="cat-card" data-cat="youth">
+          <div class="cat-icon">🧑</div>
+          <div class="cat-title">இளைஞர்கள்</div>
+          <div class="cat-badge">நடுத்தர நிலை</div>
+        </div>
+        <div class="cat-card" data-cat="adult">
+          <div class="cat-icon">👨</div>
+          <div class="cat-title">பெரியவர்கள்</div>
+          <div class="cat-badge">கடினமான நிலை</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 4: QUESTION ARENA -->
+    <section id="viewQuestion" class="view-screen">
+      <div class="arena-box">
+        <!-- Top Status Row -->
+        <div class="arena-top-row">
+          <div class="player-tag" id="dispPlayerName">DAVID</div>
+          <div class="q-number-tag">கேள்வி <span id="dispQNum">1</span> / 3</div>
+          <div class="timer-tag" id="dispTimerBox">
+            <span id="timerIcon">⏳</span>
+            <span id="dispTimerSeconds">30</span> விநாடி
+          </div>
+          <div class="pts-counter-tag">⭐ <span id="dispPotentialPtsLabel">கிடைக்கும் மதிப்பெண்:</span> <span id="dispPotentialPts">3</span></div>
+        </div>
+        <div class="timer-progress-track">
+          <div class="timer-progress-fill" id="timerProgressBar"></div>
+        </div>
+
+        <!-- Question Category / Type Statement -->
+        <div class="type-statement-banner" id="dispQuestionType">
+          👤 இது ஒரு நபர்.
+        </div>
+
+        <!-- Word Blanks (Grouped by Word) -->
+        <div class="words-wrapper" id="wordsContainer"></div>
+
+        <!-- 3 Progressive Clues -->
+        <div class="clues-stack">
+          <div class="clue-btn-card unlocked-btn" id="clueCard1">
+            <div class="clue-card-head">💡 குறிப்பு 1</div>
+            <div class="clue-content-text" id="clueText1" style="display:none;"></div>
+          </div>
+          <div class="clue-btn-card" id="clueCard2">
+            <div class="clue-card-head">💡 குறிப்பு 2</div>
+            <div class="clue-content-text" id="clueText2" style="display:none;"></div>
+          </div>
+          <div class="clue-btn-card" id="clueCard3">
+            <div class="clue-card-head">💡 குறிப்பு 3</div>
+            <div class="clue-content-text" id="clueText3" style="display:none;"></div>
+          </div>
+        </div>
+
+        <!-- Operator Controls (சரி / தவறு) -->
+        <div class="operator-strip">
+          <div>
+            <button class="btn-tool" id="btnPeek" title="ஆபரேட்டர் பதில் பார்வை (HotKey: P)">👁️ பதில்</button>
+            <span id="peekBox" style="display:none; font-weight:800; color:#fde68a; margin-left:10px;"></span>
+          </div>
+          <div class="op-action-group">
+            <button class="btn-correct" id="btnCorrect">✅ சரி</button>
+            <button class="btn-wrong" id="btnWrong">❌ தவறு</button>
+          </div>
+        </div>
+
+        <!-- Answer Revealed Box -->
+        <div class="answer-feedback-card" id="feedbackCard">
+          <div class="feedback-banner" id="feedbackTitle">🎉 சரியான பதில்!</div>
+          <div class="scripture-ref" id="feedbackRef">📖 1 சாமுவேல் 17</div>
+          <div class="scripture-desc" id="feedbackExp">விளக்கம்...</div>
+          <button class="btn-next-q" id="btnNextQ">➡️ அடுத்த கேள்வி</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 5: PRIZE & RESULT -->
+    <section id="viewPrize" class="view-screen">
+      <div class="prize-card">
+        <h1 class="screen-heading">🎉 விளையாட்டு முடிந்தது!</h1>
+        <h2 style="font-size: 1.8rem; color:var(--gold-primary); margin-bottom: 6px;" id="dispFinalName">David</h2>
+        <div style="font-size: 1.15rem; color:#94a3b8; margin-bottom: 18px;" id="dispFinalCategory">பிரிவு: குழந்தைகள்</div>
+
+        <!-- Question Breakdown -->
+        <div class="breakdown-grid">
+          <div class="breakdown-card">
+            <div class="q-title">கேள்வி 1</div>
+            <div class="q-score" id="breakdownQ1">3 / 3</div>
+          </div>
+          <div class="breakdown-card">
+            <div class="q-title">கேள்வி 2</div>
+            <div class="q-score" id="breakdownQ2">3 / 3</div>
+          </div>
+          <div class="breakdown-card">
+            <div class="q-title">கேள்வி 3</div>
+            <div class="q-score" id="breakdownQ3">2 / 3</div>
+          </div>
+        </div>
+
+        <div class="prize-circle">
+          <div class="score-big-text" id="dispFinalScore">8</div>
+          <div style="font-weight:700; color:#facc15;">/ 9 மொத்த மதிப்பெண்</div>
+        </div>
+
+        <div class="prize-badge-box">
+          <div class="prize-badge-title" id="dispPrizeTitle">🥇 முதல் பரிசு</div>
+          <p id="dispPrizeSub" style="font-size:1.2rem; color:#e2e8f0;">வாழ்த்துக்கள்! அற்புதமான வேதாகம அறிவு!</p>
+        </div>
+
+        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+          <button class="btn-tool" id="btnLBFromPrize" style="padding:14px 28px; font-size:1.15rem;">🏆 தரவரிசை</button>
+          <button class="primary-btn" id="btnNextPlayer">👤 அடுத்த வீரர்</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL: LEADERBOARD -->
+  <div class="modal-backdrop" id="modalLB">
+    <div class="modal-window" style="max-width: 820px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+        <h2 style="color:var(--gold-primary); display:flex; align-items:center; gap:8px;">🏆 வேதாகம சவால் தரவரிசை</h2>
+        <button class="btn-tool" id="btnCloseLB" style="font-size:1.3rem; padding:4px 12px;">&times;</button>
+      </div>
+
+      <!-- Event Status & Period Banner -->
+      <div class="lb-header-status">
+        <div>
+          <span style="font-weight:800; color:#fff;" id="lbEventTitle">நிகழ்வு 1</span>
+          <span id="lbEventBadge" class="status-badge active">🟢 செயலில் உள்ளது</span>
+        </div>
+        <div style="color:#cbd5e1; font-size:0.9rem;" id="lbEventTimeLeft">மீதமுள்ள நேரம்: செயலில் உள்ளது</div>
+        <div style="display:flex; gap:8px;">
+          <button class="btn-tool" id="btnNewEvent" title="தற்போதைய நிகழ்வை காப்பகப்படுத்தி புதிய நிகழ்வைத் தொடங்கு">🆕 புதிய நிகழ்வு</button>
+          <button class="btn-tool" id="btnToggleHistory">📜 நிகழ்வு வரலாறு</button>
+        </div>
+      </div>
+
+      <!-- Active Leaderboard Container -->
+      <div id="lbActiveView">
+        <!-- Search & Filter Controls -->
+        <div class="lb-controls-bar">
+          <input type="text" id="lbSearchInput" class="lb-search-input" placeholder="🔍 வீரர் பெயரைத் தேடவும்..." />
+          <div style="display:flex; gap:6px;">
+            <button class="lb-filter-btn active" data-filter="all">அனைத்தும்</button>
+            <button class="lb-filter-btn" data-filter="kids">குழந்தைகள்</button>
+            <button class="lb-filter-btn" data-filter="youth">இளைஞர்கள்</button>
+            <button class="lb-filter-btn" data-filter="adult">பெரியவர்கள்</button>
+          </div>
+        </div>
+
+        <!-- Section 1: Top 3 Podium -->
+        <div class="lb-section-title">🏆 இன்றைய முன்னணி வீரர்கள்</div>
+        <div class="podium-box" id="lbPodiumContainer"></div>
+
+        <!-- Section 2: All Players Table -->
+        <div class="lb-section-title">📋 அனைத்து வீரர்களும் (<span id="lbTotalPlayerCount">0</span>)</div>
+        <div style="max-height: 300px; overflow-y: auto; border: 1px solid rgba(246, 192, 66, 0.2); border-radius: 10px;">
+          <table class="lb-table">
+            <thead>
+              <tr>
+                <th>வரிசை</th>
+                <th>வீரர் பெயர்</th>
+                <th>பிரிவு</th>
+                <th>கே 1</th>
+                <th>கே 2</th>
+                <th>கே 3</th>
+                <th>மொத்தம்</th>
+                <th>பரிசு</th>
+                <th>நேரம்</th>
+              </tr>
+            </thead>
+            <tbody id="lbTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Event History Container (Hidden by default) -->
+      <div id="lbHistoryView" style="display:none;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <div class="lb-section-title" style="margin:0;">📜 காப்பகப்படுத்தப்பட்ட நிகழ்வுகள்</div>
+          <button class="btn-tool" id="btnBackToActiveLB">← செயலில் உள்ள தரவரிசை</button>
+        </div>
+        <div id="historyEventsList" style="max-height: 380px; overflow-y: auto;"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL: SETTINGS -->
+  <div class="modal-backdrop" id="modalConfig">
+    <div class="modal-window" style="max-width: 680px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <h2 style="color:var(--gold-primary);">⚙️ விளையாட்டு & நிகழ்வு அமைப்புகள்</h2>
+        <button class="btn-tool" id="btnCloseConfig" style="font-size:1.3rem; padding:4px 12px;">&times;</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:20px;">
+
+        <!-- Timer Setting -->
+        <div class="config-group">
+          <label style="font-weight:800; color:var(--gold-primary); font-size:1.1rem; display:block; margin-bottom:8px;">⏳ கேள்வி கவுண்ட்டவுன் டைமர் (ஒவ்வொரு நிலைக்கும்):</label>
+          <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:10px;">
+            <label class="radio-label"><input type="radio" name="cfgTimer" value="30"> 30 விநாடி (இயல்பு)</label>
+            <label class="radio-label"><input type="radio" name="cfgTimer" value="15"> 15 விநாடி</label>
+            <label class="radio-label"><input type="radio" name="cfgTimer" value="20"> 20 விநாடி</label>
+            <label class="radio-label"><input type="radio" name="cfgTimer" value="45"> 45 விநாடி</label>
+            <label class="radio-label"><input type="radio" name="cfgTimer" value="60"> 60 விநாடி</label>
+            <label class="radio-label"><input type="radio" name="cfgTimer" value="0"> நேரமில்லை</label>
+          </div>
+          <div style="margin-top:10px; display:flex; align-items:center; gap:10px;">
+            <label class="radio-label"><input type="radio" name="cfgTimer" value="custom"> தனிப்பயன்:</label>
+            <input type="number" id="cfgTimerCustom" min="5" max="300" placeholder="விநாடிகள்" style="padding:6px 10px; width:110px; border-radius:8px; border:1px solid var(--card-border); background:#090c19; color:#fff;" />
+          </div>
+        </div>
+
+        <!-- Leaderboard Event Period Setting -->
+        <div class="config-group">
+          <label style="font-weight:800; color:var(--gold-primary); font-size:1.1rem; display:block; margin-bottom:8px;">📅 தரவரிசை நிகழ்வு கால அளவு (Event Period):</label>
+          <select id="cfgEventPeriod" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--card-border); background:#090c19; color:#fff; font-family:var(--font-tamil); font-size:1rem;">
+            <option value="1h">1 மணி நேரம்</option>
+            <option value="2h">2 மணி நேரம்</option>
+            <option value="3h">3 மணி நேரம்</option>
+            <option value="6h">6 மணி நேரம்</option>
+            <option value="12h">12 மணி நேரம்</option>
+            <option value="1d">1 நாள் (24 மணி)</option>
+            <option value="2d">2 நாட்கள்</option>
+            <option value="3d">3 நாட்கள்</option>
+            <option value="7d">7 நாட்கள்</option>
+            <option value="custom">தனிப்பயன் (தேதி & நேரம்)</option>
+          </select>
+          <div id="cfgCustomPeriodBox" style="display:none; margin-top:12px; grid-template-columns: 1fr 1fr; gap:10px;">
+            <div>
+              <label style="font-size:0.85rem; color:#94a3b8; display:block; margin-bottom:4px;">தொடக்க தேதி & நேரம்:</label>
+              <input type="datetime-local" id="cfgEventStart" style="width:100%; padding:8px; border-radius:6px; border:1px solid var(--card-border); background:#090c19; color:#fff;" />
+            </div>
+            <div>
+              <label style="font-size:0.85rem; color:#94a3b8; display:block; margin-bottom:4px;">முடிவு தேதி & நேரம்:</label>
+              <input type="datetime-local" id="cfgEventEnd" style="width:100%; padding:8px; border-radius:6px; border:1px solid var(--card-border); background:#090c19; color:#fff;" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Prize Thresholds -->
+        <div class="config-group">
+          <label style="font-weight:800; color:var(--gold-primary); font-size:1.1rem; display:block; margin-bottom:8px;">🏆 பரிசு வரம்பு அமைப்புகள் (9-ல் குறைந்தபட்ச புள்ளி):</label>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+            <label style="display:flex; justify-content:space-between; align-items:center;">🥇 முதல் பரிசு: <input type="number" id="cfgP1" min="1" max="9" value="9" style="padding:6px; width:65px; border-radius:6px; border:1px solid var(--card-border); background:#090c19; color:#fff; text-align:center;" /></label>
+            <label style="display:flex; justify-content:space-between; align-items:center;">🥈 இரண்டாம் பரிசு: <input type="number" id="cfgP2" min="1" max="9" value="8" style="padding:6px; width:65px; border-radius:6px; border:1px solid var(--card-border); background:#090c19; color:#fff; text-align:center;" /></label>
+            <label style="display:flex; justify-content:space-between; align-items:center;">🥉 மூன்றாம் பரிசு: <input type="number" id="cfgP3" min="1" max="9" value="7" style="padding:6px; width:65px; border-radius:6px; border:1px solid var(--card-border); background:#090c19; color:#fff; text-align:center;" /></label>
+            <label style="display:flex; justify-content:space-between; align-items:center;">🎁 சிறப்பு பரிசு: <input type="number" id="cfgP4" min="1" max="9" value="6" style="padding:6px; width:65px; border-radius:6px; border:1px solid var(--card-border); background:#090c19; color:#fff; text-align:center;" /></label>
+          </div>
+        </div>
+
+        <!-- Sound & Fullscreen Quick Toggles -->
+        <div style="display:flex; gap:12px;">
+          <button class="btn-tool" id="btnSoundModal" style="flex:1; padding:10px;">🔊 ஒலி: ஆன்</button>
+          <button class="btn-tool" id="btnFullModal" style="flex:1; padding:10px;">⛶ Fullscreen</button>
+        </div>
+
+        <button class="primary-btn" id="btnSaveConfig" style="padding:14px; justify-content:center; margin-top:10px;">💾 அமைப்புகளைச் சேமிக்கவும்</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT ENGINE -->
+  <script>
+  /* --------------------------------------------------------
+     1. COMPLETE 90-QUESTION DATABASE (Type + 3 Clues + Ref + Exp)
+  -------------------------------------------------------- */
+  const QUESTION_BANK = {
+    kids: [
+      {
+        type: "👤 இது ஒரு நபர்.",
+        answer: "நோவா",
+        clues: [
+          "இவர் தன் காலத்தில் தேவனுக்கு முன்பாக நீதியும் உத்தமமுமாய் வாழ்ந்தார்.",
+          "மிருகங்களை ஜோடி ஜோடியாக ஒரு பெரிய மரக்கலத்தில் ஏற்றினார்.",
+          "பெருவெள்ளத்திலிருந்து தன் குடும்பத்தோடு காப்பாற்றப்பட்ட பேழையைக் கட்டியவர்."
+        ],
+        ref: "ஆதியாகமம் 6–9",
+        exp: "நோவா தேவனுடைய கட்டளைக்குக் கீழ்ப்படிந்து பேழையைக் கட்டி மனிதகுலத்தையும் மிருகங்களையும் காப்பாற்றினார்."
+      },
+      {
+        type: "🐾 இது ஒரு விலங்கு.",
+        answer: "பாம்பு",
+        clues: [
+          "ஏதேன் தோட்டத்தில் முக்கியமான ஒரு சம்பவத்துடன் தொடர்புடையது.",
+          "தன் தந்திரமான பேச்சினால் ஏவாளிடம் பேசி வஞ்சித்தது.",
+          "விலக்கப்பட்ட கனியைப் புசிக்கச் செய்து சாபத்திற்குள்ளான ஊரும் பிராணி."
+        ],
+        ref: "ஆதியாகமம் 3",
+        exp: "பிசாசு பாம்பின் மூலமாக ஏவாளை வஞ்சித்து மனிதகுலத்தை பாவத்தில் வீழ்த்தினான்."
+      },
+      {
+        type: "📍 இது ஒரு இடம்.",
+        answer: "பெத்லகேம்",
+        clues: [
+          "யூதேயா நாட்டில் அமைந்துள்ள 'அப்பத்தின் வீடு' என்ற அர்த்தமுள்ள சிற்றூர்.",
+          "தாவீது ராஜா பிறந்து ஆடு மேய்த்த சொந்த ஊர்.",
+          "விண்மீன் வழிகாட்ட உலக இரட்சகராகிய இயேசு பிறந்த இடம்."
+        ],
+        ref: "மீகா 5:2, மத்தேயு 2:1",
+        exp: "தீர்க்கதரிசனத்தின்படி மேசியாவாகிய இயேசு கிறிஸ்து மாட்டுத் தொழுவத்தில் பெத்லகேம் ஊரில் பிறந்தார்."
+      },
+      {
+        type: "👑 இவர் ஒரு ராஜா.",
+        answer: "தாவீது",
+        clues: [
+          "இவர் இளமையில் ஒரு மேய்ப்பனாக இருந்தார்.",
+          "இவர் இஸ்ரவேலின் ஒரு பெரிய எதிரியை எதிர்கொண்டார்.",
+          "ஒரு கல்லையும் கவணையும் பயன்படுத்தி கோலியாத்தை வீழ்த்தினார்."
+        ],
+        ref: "1 சாமுவேல் 17",
+        exp: "தாவீது தேவனுடைய நாமத்தை நம்பி கோலியாத்தை வீழ்த்தி இஸ்ரவேலின் சிறந்த ராஜாவானார்."
+      },
+      {
+        type: "🔥 இவர் ஒரு தீர்க்கதரிசி.",
+        answer: "யோனா",
+        clues: [
+          "தேவனிடமிருந்து ஒரு பணியைப் பெற்றார்.",
+          "அந்தப் பணியிலிருந்து விலகி தர்ஷீசுக்கு கப்பலேறி ஓடிப்போனார்.",
+          "ஒரு பெரிய மீனின் வயிற்றில் மூன்று நாட்கள் இருந்த சம்பவத்துடன் தொடர்புடையவர்."
+        ],
+        ref: "யோனா 1–4",
+        exp: "யோனா மீனின் வயிற்றில் மனந்திரும்பி நினிவே மக்களுக்குப் பிரசங்கித்து அந்தப் பட்டணத்தைக் காப்பாற்றினார்."
+      },
+      {
+        type: "🏺 இது ஒரு பொருள்.",
+        answer: "சிலுவை",
+        clues: [
+          "மரத்தினால் செய்யப்பட்ட பண்டைய ரோமர்களின் மரண தண்டனைக் கருவி.",
+          "கல்வாரி மலையில் இயேசு கிறிஸ்து தன் தோளின் மேல் சுமந்து சென்றது.",
+          "உலக மக்களின் பாவங்களை மன்னிக்க இயேசு தம் ஜீவனைக் கொடுத்த தியாக சின்னம்."
+        ],
+        ref: "மத்தேயு 27:32, கலாத்தியர் 6:14",
+        exp: "இயேசு கிறிஸ்து சிலுவையில் இரத்தம் சிந்தி மரித்து மனிதகுலத்திற்கு இரட்சிப்பைத் தந்தார்."
+      },
+      {
+        type: "🍞 இது ஒரு உணவு.",
+        answer: "மன்னா",
+        clues: [
+          "வனாந்தரத்தில் இஸ்ரவேல் மக்களுக்கு வானத்திலிருந்து அற்புதமாய் இறங்கிய உணவு.",
+          "கொத்துமல்லி விதை போலவும் வெண்மையாகவும் தேனிட்ட பணியார சுவையாகவும் இருந்தது.",
+          "நாற்பது வருடங்களாக தினமும் காலையில் பனிபோல பொழிந்த பரலோக அப்பம்."
+        ],
+        ref: "யாத்திராகமம் 16",
+        exp: "தேவன் வனாந்தரத்தில் தம் மக்களைப் பசியின்றிப் போஷித்த பரலோக உணவு; இது ஜீவ அப்பமாகிய கிறிஸ்துவுக்கு அடையாளம்."
+      },
+      {
+        type: "🌊 இது ஒரு இயற்கை இடம்.",
+        answer: "செங்கடல்",
+        clues: [
+          "எகிப்திலிருந்து புறப்பட்ட இஸ்ரவேல் மக்களை வழிமறித்த பெரிய நீர்நிலை.",
+          "மோசே தன் கோலை நீட்டியபோது தண்ணீர் இருபுறமும் மதிலாக நின்றது.",
+          "இஸ்ரவேலர் வெட்டாந்தரையில் கடந்துசெல்லவும் பார்வோனின் சேனை மூழ்கவும் செய்த கடல்."
+        ],
+        ref: "யாத்திராகமம் 14",
+        exp: "தேவன் தம் பலத்த கரத்தினால் செங்கடலைப் பிளந்து தம் ஜனங்களை அற்புதமாய் விடுவித்தார்."
+      },
+      {
+        type: "👤 இது ஒரு நபர்.",
+        answer: "மோசே",
+        clues: [
+          "குழந்தைப் பருவத்தில் நாணல் பெட்டியில் வைக்கப்பட்டு நைல் நதியில் விடப்பட்டவர்.",
+          "எரியும் முட்புதரிலிருந்து பேசிய தேவனுடைய சத்தத்தைக் கேட்டவர்.",
+          "சீனாய் மலையில் தேவனிடமிருந்து பத்துக் கட்டளைகளைப் பெற்று இஸ்ரவேலரை வழிநடத்தியவர்."
+        ],
+        ref: "யாத்திராகமம் 2–20",
+        exp: "மோசே இஸ்ரவேலரை எகிப்தின் அடிமைத்தனத்திலிருந்து மீட்ட மாபெரும் தலைவர்."
+      },
+      {
+        type: "🏺 இது ஒரு பொருள்.",
+        answer: "பேழை",
+        clues: [
+          "கோபேர் மரத்தினால் செய்யப்பட்டு உள்ளும் புறமும் கீல் பூசப்பட்ட ஒரு பெரிய கலம்.",
+          "மூன்று தட்டுகளையும் ஒரே ஒரு கதவையும் கொண்டு மிதக்க வடிவமைக்கப்பட்டது.",
+          "ஜலப்பிரளய பெருமழையின்போது நோவாவின் குடும்பத்தையும் விலங்குகளையும் பாதுகாத்தது."
+        ],
+        ref: "ஆதியாகமம் 6:14",
+        exp: "பேழை தேவனுடைய இரட்சிப்பின் பாதுகாப்பிற்கு அடையாளமாக இருக்கிறது."
+      },
+      {
+        type: "🌊 இது ஒரு இயற்கை அடையாளம்.",
+        answer: "வானவில்",
+        clues: [
+          "பெருமழை பெய்து ஓய்ந்த பிறகு வானத்து மேகத்தின் நடுவே தோன்றிய வர்ணம்.",
+          "தேவன் நோவாவுடனும் பூமியிலுள்ள யாவற்றுடனும் செய்த உடன்படிக்கையின் சின்னம்.",
+          "பூமியை இனி ஜலப்பிரளயத்தினால் அழிக்கமாட்டேன் என்பதற்கு தேவன் தந்த வாக்குத்தத்த அடையாளம்."
+        ],
+        ref: "ஆதியாகமம் 9:12-17",
+        exp: "வானவில் தேவனுடைய மாறாத இரக்கத்திற்கும் உடன்படிக்கைக்கும் சாட்சியாகும்."
+      },
+      {
+        type: "🐾 இது ஒரு விலங்கு.",
+        answer: "சிங்கம்",
+        clues: [
+          "காட்டு மிருகங்களின் ராஜா என்று அழைக்கப்படும் கம்பீரமான விலங்கு.",
+          "சிம்சோன் தன் வழியில் எதிர்கொண்டு தன் வெறும் கைகளினாலே கிழித்துப் போட்ட பிராணி.",
+          "தானியேல் கெபியில் போடப்பட்டபோதும் தேவ தூதன் இவற்றின் வாயைக் கட்டிப்போட்டார்."
+        ],
+        ref: "தானியேல் 6:22, நியாயாதிபதிகள் 14:6",
+        exp: "தானியேலின் விசுவாசத்தினால் தேவன் சிங்கங்களின் வாயைக் கட்டிப் பாதுகாத்தார்."
+      },
+      {
+        type: "👤 இது ஒரு நபர்.",
+        answer: "தானியேல்",
+        clues: [
+          "பாபிலோன் ராஜாவின் அசுத்தமான உணவை உண்ண மறுத்து காய்கறிகளை உண்ட வாலிபன்.",
+          "எருசலேமின் திசையை நோக்கி தினமும் மூன்று வேளையும் முழங்கால்படியிட்டு ஜெபித்தவர்.",
+          "ஜெபம் செய்த குற்றத்திற்காக சிங்கங்களின் கெபியில் வீசப்பட்டு அற்புதமாய்க் காப்பாற்றப்பட்டவர்."
+        ],
+        ref: "தானியேல் 1:8, 6:10-23",
+        exp: "தானியேல் தேவனுக்கு உண்மையாய் இருந்ததால் ராஜாவின் அரண்மனையில் ஞானியாய் உயர்த்தப்பட்டார்."
+      },
+      {
+        type: "👤 இது ஒரு நபர்.",
+        answer: "எஸ்தர்",
+        clues: [
+          "மொர்தெகாய் என்பவரால் சொந்த மகளைப்போல் வளர்க்கப்பட்ட ஒரு யூதப் பெண்.",
+          "தன் மக்களின் விடுதலைக்காக 'செத்தாலும் சாகிறேன்' என்று துணிந்து ராஜாவிடம் சென்றவள்.",
+          "பெர்சிய ராஜ்யத்தின் அரசியாகி தன் யூத மக்களை ஆமானின் சூழ்ச்சியிலிருந்து காத்த பெண்மணி."
+        ],
+        ref: "எஸ்தர் 2:17, 4:16",
+        exp: "எஸ்தர் ராணி உபவாசித்து விசுவாசத்தோடு செயல்பட்டு தன் மக்கள் அழிக்கப்படாமல் பாதுகாத்தார்."
+      },
+      {
+        type: "🏛️ இது ஒரு நகரம்.",
+        answer: "எருசலேம்",
+        clues: [
+          "சீயோன் மலை மேல் அமைந்த சமாதானத்தின் நகரம் என்று பொருள்படும் புனித தலம்.",
+          "சாலொமோன் ராஜா கர்த்தருக்கு முதல் பிரம்மாண்ட ஆலயத்தைக் கட்டிய இடம்.",
+          "இயேசு கழுதைக்குட்டியின் மேல் ஓசன்னா கீதங்கள் முழங்க ராஜாவாகப் பவனி வந்த நகரம்."
+        ],
+        ref: "1 ராஜாக்கள் 6, மத்தேயு 21:1-11",
+        exp: "எருசலேம் இஸ்ரவேலின் தலைநகரமாகவும் தேவனுடைய ஆலயம் விளங்கிய பரிசுத்த நகரமாகவும் உள்ளது."
+      },
+      {
+        type: "👤 இது ஒரு நபர்.",
+        answer: "யோசேப்பு",
+        clues: [
+          "தன் தகப்பன் யாக்கோபினால் பலவர்ண அங்கி கொடுத்து நேசிக்கப்பட்ட மகன்.",
+          "கனவுகளைக் கண்டதாலும் பொறாமையினாலும் சொந்த சகோதரர்களால் எகிப்துக்கு விற்கப்பட்டவர்.",
+          "பார்வோனின் சொப்பனங்களுக்கு விளக்கம் கூறி எகிப்தின் பிரதம மந்திரியாக உயர்ந்தவர்."
+        ],
+        ref: "ஆதியாகமம் 37, 41",
+        exp: "யோசேப்பு துன்பங்களை விசுவாசத்தோடு சகித்து பஞ்ச காலத்தில் பல தேசத்து மக்களைக் காப்பாற்றினார்."
+      },
+      {
+        type: "👤 இது ஒரு நபர்.",
+        answer: "ஆபிரகாம்",
+        clues: [
+          "கர்த்தருடைய கட்டளைப்படி தன் சொந்த ஊரையும் இனத்தையும் விட்டுப் புறப்பட்டவர்.",
+          "'விசுவாசத்தின் தகப்பன்' என்றும் 'தேவனுடைய சிநேகிதன்' என்றும் அழைக்கப்பட்டவர்.",
+          "தனது 100-வது வயதில் வாக்குத்தத்த மகனாகிய ஈசாக்கைப் பெற்றெடுத்த முற்பிதா."
+        ],
+        ref: "ஆதியாகமம் 12:1-4, 21:5",
+        exp: "ஆபிரகாம் தேவனுடைய வாக்குத்தத்தங்களை முழுமையாய் நம்பியதால் விசுவாசிகளுக்குத் தகப்பனானார்."
+      },
+      {
+        type: "👤 இது ஒரு நபர்.",
+        answer: "ஈசாக்கு",
+        clues: [
+          "முதிர்வயதில் ஆபிரகாமுக்கும் சாராளுக்கும் பிறந்த வாக்குத்தத்த புத்திரன்.",
+          "மோரியா மலையில் தன் தந்தையால் பலிபீடத்தின் மேல் விறகுகளின் மேல் வைக்கப்பட்டவர்.",
+          "ரெபேக்காளை மணந்து, ஏசா மற்றும் யாக்கோபுக்குத் தகப்பனான சாந்தகுண முற்பிதா."
+        ],
+        ref: "ஆதியாகமம் 22:9, 24:67",
+        exp: "ஈசாக்கு தன் தந்தையின் கீழ்ப்படிதலுக்கும் தேவனுடைய ஆசீர்வாதத்திற்கும் சாட்சியாய் விளங்கினார்."
+      },
+      {
+        type: "👤 இது ஒரு நபர்.",
+        answer: "யாக்கோபு",
+        clues: [
+          "தன் அண்ணன் ஏசாவின் குதிங்காலைப் பிடித்துக்கொண்டு பிறந்த இரட்டைப் பிள்ளை.",
+          "பெத்தேலில் பரலோகத்திற்கு எட்டின ஏணியையும் தேவ தூதர்களையும் கனவில் கண்டவர்.",
+          "தேவதூதனுடன் விடியுமட்டும் போராடி 'இஸ்ரவேல்' என்ற புதிய பெயரைப் பெற்றவர்."
+        ],
+        ref: "ஆதியாகமம் 28:12, 32:28",
+        exp: "யாக்கோபு தேவனுடைய ஆசீர்வாதத்தை வாஞ்சித்துப் போராடி பன்னிரண்டு கோத்திரங்களின் பிதாவானார்."
+      },
+      {
+        type: "👤 இது ஒரு நபர்.",
+        answer: "ஆதாம்",
+        clues: [
+          "பூமியின் மண்ணினாலே தேவனால் தன் சாயலாக உண்டாக்கப்பட்ட முதல் மனிதன்.",
+          "ஏதேன் தோட்டத்தில் விலங்குகள் மற்றும் பறவைகளுக்குப் பெயர் சூட்டியவர்.",
+          "விலக்கப்பட்ட கனியைப் புசித்து தேவனுடைய கட்டளையை மீறிய முதல் மனிதன்."
+        ],
+        ref: "ஆதியாகமம் 2:7, 3:6",
+        exp: "ஆதாம் தேவனால் படைக்கப்பட்ட முதல் மனிதனாய் ஏதேன் தோட்டத்தைப் பராமரிக்கும் பொறுப்பைப் பெற்றார்."
+      },
+      {
+        type: "👤 இது ஒரு நபர்.",
+        answer: "ஏவாள்",
+        clues: [
+          "ஆதாமின் விலா எலும்பிலிருந்து தேவனால் சிருஷ்டிக்கப்பட்ட பெண்.",
+          "'ஜீவனுள்ளோருக்கெல்லாம் தாய்' என்று வேதாகமத்தில் பெயரிடப்பட்ட முதல் பெண்மணி.",
+          "பாம்பின் வஞ்சகப் பேச்சைக் கேட்டு நன்மையின் தீமையின் கனியை முதலில் உண்டவர்."
+        ],
+        ref: "ஆதியாகமம் 2:22, 3:20",
+        exp: "ஏவாள் ஆதாமின் ஏற்ற துணையாகப் படைக்கப்பட்டு மனிதகுலத்தின் முதல் தாயாக விளங்கினார்."
+      },
+      {
+        type: "🔥 இவர் ஒரு தீர்க்கதரிசி.",
+        answer: "சாமுவேல்",
+        clues: [
+          "அன்னாள் தன் கண்ணீரின் ஜெபத்தினால் தேவனிடமிருந்து கேட்டுப் பெற்றெடுத்த மகன்.",
+          "சிறுவயதிலேயே ஆலயத்தில் ஏலி ஆசாரியனிடம் தங்கி ஊழியம் செய்தவர்.",
+          "இரவில் ஆண்டவர் அழைத்தபோது 'பேசும் ஆண்டவரே, அடியேன் கேட்கிறேன்' என்று பணிந்தவர்."
+        ],
+        ref: "1 சாமுவேல் 1:20, 3:10",
+        exp: "சாமுவேல் சிறுவயது முதலே தேவ சத்தத்தைக் கேட்டு இஸ்ரவேலின் தீர்க்கதரிசியாகத் திகழ்ந்தார்."
+      },
+      {
+        type: "👤 இது ஒரு நபர்.",
+        answer: "சிம்சோன்",
+        clues: [
+          "தாயின் கர்ப்பத்திலிருந்தே நசரேயனாக அர்ப்பணிக்கப்பட்ட இஸ்ரவேலின் நியாயாதிபதி.",
+          "கழுதையின் பச்சைத் தாடை எலும்பினால் ஆயிரம் பெலிஸ்தியர்களை வென்ற பலசாலி.",
+          "தலையின் சவரம் செய்யப்படாத ஏழு ஜடைகளில் தன் மகா பலத்தைக் கொண்டிருந்தவர்."
+        ],
+        ref: "நியாயாதிபதிகள் 15:15, 16:17",
+        exp: "சிம்சோன் தேவ ஆவியினால் அபார பலம் பெற்று இஸ்ரவேலரை எதிரிகளிடமிருந்து காத்தார்."
+      },
+      {
+        type: "🔥 இவர் ஒரு தீர்க்கதரிசி.",
+        answer: "எலியா",
+        clues: [
+          "கேரீத் ஆற்றண்டையில் காகங்கள் அப்பமும் இறைச்சியும் கொண்டுவந்து போஷிக்கப்பட்டவர்.",
+          "கர்மேல் மலையில் பாகாலின் தீர்க்கதரிசிகளுக்கு முன் ஜெபித்து வானிலிருந்து அக்கினியை வரவழைத்தவர்.",
+          "மரணத்தைக் காணாமல் அக்கினி ரதத்தில் பரலோகத்திற்கு எடுத்துக்கொள்ளப்பட்ட தீர்க்கதரிசி."
+        ],
+        ref: "1 ராஜாக்கள் 17:6, 18:38, 2 ராஜாக்கள் 2:11",
+        exp: "எலியா தேவனுடைய வல்லமையை தைரியமாய் வெளிப்படுத்தி இஸ்ரவேலை மெய் தேவனிடம் திருப்பினார்."
+      },
+      {
+        type: "👤 இது ஒரு நபர்.",
+        answer: "மரியாள்",
+        clues: [
+          "நாசரேத் ஊரில் வாழ்ந்த தாழ்மையும் தேவபக்தியும் உள்ள ஒரு கன்னிப்பெண்.",
+          "காபிரியேல் தூதன் வந்து 'கிருபை பெற்றவளே வாழ்க' என்று வாழ்த்திய பெண்மணி.",
+          "பரிசுத்த ஆவியினால் இயேசு கிறிஸ்துவை கருத்தரித்து உலகிற்கு ஈன்றெடுத்த தாய்."
+        ],
+        ref: "லூக்கா 1:28, 2:7",
+        exp: "மரியாள் தேவனுடைய சித்தத்திற்குத் தன்னை முழுமையாய் அர்ப்பணித்து மீட்பரின் தாயானார்."
+      },
+      {
+        type: "✝️ இவர் இயேசுவின் சீடர்.",
+        answer: "பேதுரு",
+        clues: [
+          "கலிலேயா ஏரிக்கரையில் தன் சகோதரனுடன் வலை வீசிக்கொண்டிருந்த மீனவர்.",
+          "இயேசுவை நோக்கி தண்ணீரின் மேல் நடந்து செல்ல முயன்றவர்.",
+          "'நீரே ஜீவனுள்ள தேவனுடைய குமாரனாகிய கிறிஸ்து' என்று அறிக்கை செய்த முதன்மைச் சீடர்."
+        ],
+        ref: "மத்தேயு 14:29, 16:16",
+        exp: "பேதுரு இயேசுவின் நெருங்கிய சீடராய் இருந்து பெந்தெகொஸ்தே நாளில் திருச்சபையை வழிநடத்தினார்."
+      },
+      {
+        type: "👑 இவர் உலக இரட்சகர்.",
+        answer: "இயேசு",
+        clues: [
+          "பெத்லகேமின் மாட்டுத் தொழுவத்தில் தாழ்மையின் கோலமாய் வந்து பிறந்தவர்.",
+          "குருடருக்குப் பார்வை தந்து, நோயாளிகளைக் குணமாக்கி, மரித்தோரை உயிரோடு எழுப்பியவர்.",
+          "மனிதர்களின் பாவங்களுக்காக சிலுவையில் மரித்து மூன்றாம் நாளில் உயிர்த்தெழுந்த ஆண்டவர்."
+        ],
+        ref: "மத்தேயு 1:21, யோவான் 3:16",
+        exp: "இயேசு கிறிஸ்து தேவனுடைய குமாரன்; மனிதகுலத்தை மீட்க தம்மையே பலியாகத் தந்தார்."
+      },
+      {
+        type: "👤 இது ஒரு நபர்.",
+        answer: "லாசரு",
+        clues: [
+          "பெத்தானியா கிராமத்தில் மார்த்தாள் மற்றும் மரியாள் ஆகியோரின் அன்பு சகோதரன்.",
+          "கொடிய நோயினால் மரித்து கல்லறையில் வைக்கப்பட்டு நான்கு நாட்கள் ஆகியிருந்தது.",
+          "இயேசு 'வெளியே வா' என்று உரத்த சத்தமாய் அழைத்தவுடன் உயிரோடு எழுந்து வந்தவர்."
+        ],
+        ref: "யோவான் 11:1-44",
+        exp: "இயேசு தாமே உயிர்த்தெழுதலும் ஜீவனுமாய் இருக்கிறார் என்பதை லாசருவை உயிர்ப்பித்து நிரூபித்தார்."
+      },
+      {
+        type: "👤 இது ஒரு நபர்.",
+        answer: "சகேயு",
+        clues: [
+          "எரிகோ நகரத்தில் இருந்த வரி வசூலிக்கும் ஆயக்காரருக்குத் தலைவனான செல்வந்தர்.",
+          "குட்டையான மனிதனாயிருந்ததால் கூட்டத்தில் இயேசுவைக் காண காட்டு அத்தி மரத்தில் ஏறினவர்.",
+          "இயேசு தன் வீட்டிற்கு வந்தவுடன் தன் ஆஸ்தியில் பாதியை ஏழைகளுக்குக் கொடுக்க முன்வந்தவர்."
+        ],
+        ref: "லூக்கா 19:1-9",
+        exp: "சகேயு இயேசுவின் அன்பினால் மனந்திரும்பி அநியாயமாய் வாங்கியதை நாலத்தனையாகத் திருப்பிக் கொடுத்தார்."
+      },
+      {
+        type: "👤 இது ஒரு நபர்.",
+        answer: "ரூத்",
+        clues: [
+          "மோவாப் தேசத்தைச் சேர்ந்த அன்பும் உத்தமமும் நிறைந்த ஒரு மருமகள்.",
+          "'உங்கள் ஜனம் என் ஜனம், உங்கள் தேவன் என் தேவன்' என்று தன் மாமியாருடன் வந்தவள்.",
+          "போவாஸின் வயலில் கதிர் பொறுக்கி, பின்னர் அவரை மணந்து தாவீது ராஜாவின் முன்னோடியானவள்."
+        ],
+        ref: "ரூத் 1:16, 4:13",
+        exp: "ரூத் தன் மாமியை உண்மையாய் நேசித்து தேவனைப் பற்றிக்கொண்டதால் இயேசுவின் வம்சாவளியில் இடம் பெற்றார்."
+      }
+    ],
+
+    youth: [
+      {
+        type: "👤 இது ஒரு நபர்.",
+        answer: "பர்னபா",
+        clues: [
+          "ஆரம்ப சபையில் விசுவாசிகளை ஊக்கப்படுத்தியவர்.",
+          "சவுலை அப்போஸ்தலர்களிடம் அறிமுகப்படுத்துவதில் பங்கு கொண்டார்.",
+          "பவுலுடன் சேர்ந்து முதல் மிஷனரி ஊழியப் பயணம் செய்தவர்."
+        ],
+        ref: "அப்போஸ்தலர் 4:36–37, 9:27, 13",
+        exp: "பர்னபா 'தேறுதலின் மகன்' என்று அழைக்கப்பட்டு புதிய விசுவாசிகளை உற்சாகப்படுத்தினார்."
+      },
+      {
+        type: "👤 இது ஒரு நபர்.",
+        answer: "மொர்தெகாய்",
+        clues: [
+          "சூசான் அரண்மனை வாசலில் அமர்ந்திருந்த உண்மையுள்ள ஒரு யூத மனிதர்.",
+          "பொல்லாத ஆமானுக்கு தலைவணங்க மறுத்து தேவனுக்கு மட்டுமே பணிந்தவர்.",
+          "எஸ்தர் ராணியை வளர்த்து, ராஜாவுக்கு எதிரான கொலைச் சதியை வெளிப்படுத்தியவர்."
+        ],
+        ref: "எஸ்தர் 2:5-7, 3:2, 6:10",
+        exp: "மொர்தெகாய் தேவ பயத்தில் உறுதியாய் இருந்து எஸ்தருக்கு வழிகாட்டி யூத மக்களைப் பாதுகாத்தார்."
+      },
+      {
+        type: "✝️ இவர் ஒரு இரத்தசாட்சி.",
+        answer: "ஸ்தேவான்",
+        clues: [
+          "ஆவியும் ஞானமும் விசுவாசமும் நிறைந்த ஏழு சபை உதவிக்காரரில் ஒருவர்.",
+          "விசாரணையின்போது இவருடைய முகம் தேவதூதனின் முகம்போல பிரகாசித்தது.",
+          "கல்லெறியப்பட்டு மரிக்கும்போது எதிரிகளை மன்னித்து மரித்த முதல் இரத்தசாட்சி."
+        ],
+        ref: "அப்போஸ்தலர் 6:5, 7:59-60",
+        exp: "ஸ்தேவான் கிறிஸ்துவுக்காக உயிர்துறந்த முதல் இரத்தசாட்சியாய் மன்னிப்பின் மேன்மையை வெளிப்படுத்தினார்."
+      },
+      {
+        type: "✝️ இவர் ஒரு சுவிசேஷகர்.",
+        answer: "பிலிப்பு",
+        clues: [
+          "சமாரியா பட்டணத்தில் போய் கிறிஸ்துவைப் பிரசங்கித்து பெரிய எழுப்புதலைக் கண்டவர்.",
+          "கர்த்தருடைய தூதன் சொன்னபடி காசா வழியிலுள்ள வனாந்தரப் பாதைக்குச் சென்றவர்.",
+          "எத்தியோப்பிய மந்திரியின் ரதத்தில் ஏறி ஏசாயா தீர்க்கதரிசனத்தை விளக்கி ஞானஸ்நானம் கொடுத்தவர்."
+        ],
+        ref: "அப்போஸ்தலர் 8:5, 8:26-38",
+        exp: "பிலிப்பு பரிசுத்த ஆவியின் வழிநடத்துதலுக்கு உடனடியாகக் கீழ்ப்படிந்து ஊழியத்தை நிறைவேற்றினார்."
+      },
+      {
+        type: "👤 இது ஒரு நபர்.",
+        answer: "அப்பொல்லோ",
+        clues: [
+          "அலெக்சாந்திரியா ஊரில் பிறந்த யூதன், வேதவாக்கியங்களில் மிகுந்த வல்லமை உள்ளவர்.",
+          "யோவானின் ஞானஸ்நானத்தை மட்டுமே அறிந்திருந்த நிலையில் ஆவியிலே அனலாய்ப் பிரசங்கித்தவர்.",
+          "ஆக்கில்லாவும் பிரிஸ்கில்லாளும் இவருக்கு தேவனுடைய மார்க்கத்தை அதிக திட்டமாய் போதித்தனர்."
+        ],
+        ref: "அப்போஸ்தலர் 18:24-28",
+        exp: "அப்பொல்லோ நாவன்மையும் வேத அறிவும் கொண்டு இயேசுவே கிறிஸ்து என்று தைரியமாய் நிரூபித்தார்."
+      },
+      {
+        type: "👤 இது ஒரு போதகர்.",
+        answer: "தீமோத்தேயு",
+        clues: [
+          "லுஸ்திரா ஊரைச் சேர்ந்த நற்சாட்சி பெற்ற ஒரு இளம் வாலிபன்.",
+          "லோவிசாள் என்ற பாட்டியினாலும் ஐClearனிக்கே என்ற தாயினாலும் வேதத்தைக் கற்றவர்.",
+          "பவுல் அப்போஸ்தலனால் 'விசுவாசத்தில் உத்தம குமாரன்' என்று அழைக்கப்பட்டு எபேசு சபையைக் கண்காணித்தவர்."
+        ],
+        ref: "அப்போஸ்தலர் 16:1-3, 2 தீமோத்தேயு 1:5",
+        exp: "தீமோத்தேயு சிறுவயது முதல் வேதத்தை அறிந்து பவுலின் உண்மைப் பிரியமான ஊழியத் தோழராகச் சேவை செய்தார்."
+      },
+      {
+        type: "👤 இது ஒரு போதகர்.",
+        answer: "தீத்து",
+        clues: [
+          "பவுலின் ஊழியத்தில் ஒரு கிரேக்க விசுவாசியாகவும் கூட்டாளியாகவும் உடன் உழைத்தவர்.",
+          "கொரிந்து சபையின் காணிக்கைச் சேகரிப்பை ஒழுங்குபடுத்திய பவுலின் தோழன்.",
+          "குறைவாயிருக்கிறவைகளை ஒழுங்குபடுத்தும்படி கிரேத்தா தீவில் விட்டுவைக்கப்பட்ட இளம் போதகர்."
+        ],
+        ref: "தீத்து 1:4-5, 2 கொரிந்தியர் 8:16",
+        exp: "தீத்து சபைகளை ஒழுங்குபடுத்துவதிலும் மூப்பர்களை ஏற்படுத்துவதிலும் பவுலின் நம்பிக்கைக்குரிய ஊழியராக விளங்கினார்."
+      },
+      {
+        type: "👤 இது ஒரு தீர்க்கதரிசி.",
+        answer: "சீலா",
+        clues: [
+          "எருசலேம் சபையில் சகோதரர்களுக்குள்ளே முதன்மையான ஒரு தீர்க்கதரிசி.",
+          "பவுலின் இரண்டாவது சுவிசேஷப் பயணத்தில் அவருடன் சிறைச்சாலையில் இருந்த கூட்டாளி.",
+          "பிலிப்பி சிறையில் நள்ளிரவில் பவுலுடன் சேர்ந்து தேவனைத் துதித்துப் பாடி பூகம்பத்தைக் கண்டவர்."
+        ],
+        ref: "அப்போஸ்தலர் 15:22, 16:25",
+        exp: "சீலா சிறைச்சாலையின் உபத்திரவத்திலும் துதித்து சிறைக்காவலன் குடும்பத்தோடு இரட்சிக்கப்பட உதவினார்."
+      },
+      {
+        type: "👤 இது ஒரு பெண்மணி.",
+        answer: "லீதியாள்",
+        clues: [
+          "தியத்தீரா ஊரைச் சேர்ந்த இரத்தாம்பரம் (சிவப்பு ஆடை) விற்கும் வணிகப் பெண்.",
+          "பிலிப்பி நகரத்து ஆற்றங்கரையில் பவுலின் பிரசங்கத்தைக் கேட்டு ஆண்டவர் இருதயத்தைத் திறந்தவர்.",
+          "ஐரோப்பாக் கண்டத்தில் கிறிஸ்துவை ஏற்றுக்கொண்டு ஞானஸ்நானம் பெற்ற முதல் விசுவாசி."
+        ],
+        ref: "அப்போஸ்தலர் 16:14-15",
+        exp: "லீதியாள் தன் வீட்டை ஊழியர்களுக்குத் திறந்து ஐரோப்பிய மிஷனரி ஊழியத்திற்குப் புகலிடமளித்தார்."
+      },
+      {
+        type: "👤 இது ஒரு அதிகாரி.",
+        answer: "கொர்நேலியு",
+        clues: [
+          "செசரியாவில் இத்தாலிய பட்டாளம் எனப்படும் ரோமப் படைப்பிரிவின் நூற்றுக்கு அதிபதி.",
+          "தேவபக்தியுள்ளவனாயிருந்து ஏழைகளுக்கு தர்மம் செய்து எப்பொழுதும் தேவனை நோக்கி ஜெபித்தவர்.",
+          "பேதுருவின் பிரசங்கத்தைக் கேட்டு தன் வீட்டாரோடு பரிசுத்த ஆவியைப் பெற்ற முதல் புறஜாதி அதிகாரி."
+        ],
+        ref: "அப்போஸ்தலர் 10:1-48",
+        exp: "கொர்நேலியுவின் ஜெபமும் தர்மமும் தேவனிடம் நினைவுகூரப்பட்டு புறஜாதிகளுக்கு சுவிசேஷம் திறக்கப்பட வழியமைத்தது."
+      },
+      {
+        type: "👤 இது ஒரு பெண் சீஷி.",
+        answer: "தபீத்தாள்",
+        clues: [
+          "யோப்பா பட்டணத்தில் வாழ்ந்த அன்பான பெண் சீஷி; இவளுக்கு 'தொற்காள்' என்றும் பெயர்.",
+          "ஏழை விதவைகளுக்கு அநேக அங்கிகளையும் உடைகளையும் தைத்துக் கொடுத்து தர்மம் செய்தவர்.",
+          "வியாதியினால் மரித்தபோது பேதுரு அப்போஸ்தலன் வந்து ஜெபித்து உயிரோடு எழுப்பிய பெண்மணி."
+        ],
+        ref: "அப்போஸ்தலர் 9:36-42",
+        exp: "தபீத்தாள் நற்கிரியைகளினாலும் தர்மங்களினாலும் அநேகருக்கு ஆசீர்வாதமாய் இருந்து அற்புதமாய் உயிர்த்தெழுந்தார்."
+      },
+      {
+        type: "👤 இது ஒரு அதிகாரி.",
+        answer: "நிக்கோதேமு",
+        clues: [
+          "யூதர்களின் ஆலோசனை சங்கத்தில் ஒரு தலைவனும் பரிசேயனுமான மனிதர்.",
+          "இரவிலே இயேசுவினிடத்தில் வந்து மறுபிறப்பைக் குறித்து உரையாடியவர்.",
+          "இயேசுவின் அடக்கத்தின்போது நூறு ராத்தல் வெள்ளைப் போளமும் சந்தனமும் கொண்டுவந்தவர்."
+        ],
+        ref: "யோவான் 3:1-9, 19:39",
+        exp: "நிக்கோதேமு கிறிஸ்துவிடம் சத்தியத்தைக் கற்று, பின்னர் சிலுவை மரணத்தின்போது இயேசுவை அடக்கம் செய்ய உதவினார்."
+      },
+      {
+        type: "📍 இது ஒரு கிராமம்.",
+        answer: "எம்மாவு",
+        clues: [
+          "எருசலேமிலிருந்து சுமார் அறுபது ஸ்தாதிய தொலைவில் அமைந்திருந்த ஒரு சிறு கிராமம்.",
+          "இயேசு உயிர்த்தெழுந்த நாளில் இரண்டு சீடர்கள் துக்கத்தோடு நடந்து சென்ற பாதை.",
+          "உயிர்த்தெழுந்த இயேசு அப்பத்தைப் பிட்டு கொடுத்தபோது சீடர்களின் கண்கள் திறக்கப்பட்ட இடம்."
+        ],
+        ref: "லூக்கா 24:13-35",
+        exp: "எம்மாவு பாதையில் உயிர்த்தெழுந்த இயேசு சீடர்களோடு நடந்து வேதத்தை விளக்கி தம்மை வெளிப்படுத்தினார்."
+      },
+      {
+        type: "📖 இது ஒரு முக்கிய திருநாள்.",
+        answer: "பெந்தெகொஸ்தே",
+        clues: [
+          "சீடர்கள் அனைவரும் ஒருமனப்பட்டு மேல்வீட்டு அறையில் கூடி ஜெபித்துக் கொண்டிருந்த நாள்.",
+          "பலத்த காற்று அடிக்கிறதுபோல முழக்கம் உண்டாகி அக்கினி நாவுகள் அவர்கள்மேல் அமர்ந்தன.",
+          "பரிசுத்த ஆவியானவர் இறங்கிவந்து மூவாயிரம் பேர் ஒரே நாளில் மனந்திரும்பிய திருச்சபையின் பிறந்தநாள்."
+        ],
+        ref: "அப்போஸ்தலர் 2:1-41",
+        exp: "பெந்தெகொஸ்தே நாளில் பரிசுத்த ஆவியானவர் பொழியப்பட்டு அப்போஸ்தல சபை உலகெங்கும் பரவத் தொடங்கியது."
+      },
+      {
+        type: "🏛️ இது ஒரு நகரம்.",
+        answer: "தமஸ்கு",
+        clues: [
+          "சீரியாவின் மிகப் பழமையான புகழ்பெற்ற வணிக நகரம்.",
+          "கிறிஸ்தவர்களைக் கட்டி எருசலேமுக்குக் கொண்டுவர சவுல் அதிகாரக் கடிதங்களுடன் சென்ற பாதை.",
+          "வானத்திலிருந்து மின்னிய பேரொளியினால் சவுல் தரையில் விழுந்து பார்வையிழந்த இடம்."
+        ],
+        ref: "அப்போஸ்தலர் 9:1-8",
+        exp: "தமஸ்கு பாதையில் உயிர்த்தெழுந்த இயேசு சவுலைச் சந்தித்து அவரை பவுலாக மாற்றினார்."
+      },
+      {
+        type: "🏛️ இது ஒரு நகரம்.",
+        answer: "தர்சு",
+        clues: [
+          "சிலிசியா நாட்டின் தலைநகரம்; பண்டைய தத்துவக் கல்விக்கு பெயர் பெற்ற நகரம்.",
+          "கூடாரத் தொழில் கலாச்சாரம் நிறைந்திருந்த ஒரு கிரேக்க-ரோம பட்டணம்.",
+          "பவுல் அப்போஸ்தலன் பிறந்து ரோம குடியுரிமை பெற்ற அவருடைய சொந்த ஊர்."
+        ],
+        ref: "அப்போஸ்தலர் 21:39, 22:3",
+        exp: "தர்சு நகரம் பவுலின் பிறப்பிடமாக விளங்கி உலகளாவிய சுவிசேஷ ஊழியம் செய்ய அவருக்குரிய அறிவைத் தந்தது."
+      },
+      {
+        type: "🏛️ இது ஒரு நகரம்.",
+        answer: "கொரிந்து",
+        clues: [
+          "கிரேக்க தேசத்தில் இரண்டு துறைமுகங்களைக் கொண்ட பெரிய வணிக நகரம்.",
+          "பவுல் ஒன்றரை வருடங்கள் தங்கி கூடாரம் தைத்து சுவிசேஷம் அறிவித்த சபை அமைந்த ஊர்.",
+          "அன்பின் உன்னத மகிமையை விளக்கும் புகழ்பெற்ற 13-ம் அதிகார நிருபம் எழுதப்பட்ட திருச்சபை."
+        ],
+        ref: "அப்போஸ்தலர் 18:1-11, 1 கொரிந்தியர் 13",
+        exp: "கொரிந்து சபைக்கு பவுல் எழுதிய நிருபங்கள் ஆவிக்குரிய வரங்கள் மற்றும் அன்பை ஆழமாய் விளக்குகின்றன."
+      },
+      {
+        type: "🏛️ இது ஒரு நகரம்.",
+        answer: "எபேசு",
+        clues: [
+          "ஆசியாவின் பெரிய நகரம்; அர்த்தேமி விக்கிரகக் கோயிலுக்குப் புகழ்பெற்ற ஊர்.",
+          "பவுல் மூன்று வருடங்கள் தங்கி சுவிசேஷம் அறிவித்ததால் வெள்ளி விக்கிரகத் தொழில் பாதிக்கப்பட்ட இடம்.",
+          "வெளிப்படுத்தின விசேஷத்தில் தன் முதல் அன்பை விட்டதாக எச்சரிக்கப்பட்ட திருச்சபை."
+        ],
+        ref: "அப்போஸ்தலர் 19:23-28, வெளிப்படுத்தல் 2:1-4",
+        exp: "எபேசு நகரம் பவுலின் ஊழியத்தால் ஆசியாவில் பெரிய கிறிஸ்தவ மையமாக மாறியது."
+      },
+      {
+        type: "📍 இது ஒரு பிராந்தியம்.",
+        answer: "சமாரியா",
+        clues: [
+          "யூதேயாவுக்கும் கலிலேயாவுக்கும் நடுவே அமைந்த வரலாற்றுப் பிரதேசம்.",
+          "யாக்கோபின் கிணற்றண்டையில் ஒரு பெண்ணிடம் இயேசு ஜீவ தண்ணீரைப் பற்றிப் பேசிய இடம்.",
+          "அடிபட்டுக் கிடந்த மனிதனுக்கு உதவிய நல்ல மனிதனின் உவமையில் இயேசு குறிப்பிட்ட பகுதி மக்கள்."
+        ],
+        ref: "யோவான் 4:4-26, லூக்கா 10:33",
+        exp: "யூதர்களால் புறக்கணிக்கப்பட்ட சமாரியாவுக்கு இயேசு சென்று நற்செய்தியை அறிவித்து இரட்சிப்பைத் தந்தார்."
+      },
+      {
+        type: "🌊 இது ஒரு பிரதேசம்.",
+        answer: "கலிலேயா",
+        clues: [
+          "இயேசு வளர்ந்த நாசரேத்தும், ஊழியத்தின் மையமான கப்பர்நககூமும் அமைந்த வட பகுதி.",
+          "இயேசு தண்ணீரைத் திராட்சரசமாக மாற்றிய முதல் அற்புதம் நிகழ்ந்த கானா ஊர் அமைந்த பகுதி.",
+          "இயேசு தம்முடைய பெரும்பாலான அற்புதங்களையும் பிரசங்கங்களையும் செய்த ஏரிக்கரை நாடு."
+        ],
+        ref: "மத்தேயு 4:13-18, யோவான் 2:1-11",
+        exp: "கலிலேயா இருளிலிருந்த ஜனங்களுக்குப் பெரிய வெளிச்சத்தைக் கொண்டுவந்த இயேசுவின் முக்கிய தளமாகும்."
+      },
+      {
+        type: "🌿 இது ஒரு தோட்டம்.",
+        answer: "கெத்செமனே",
+        clues: [
+          "எருசலேமில் ஒலிவ மலையின் அடிவாரத்தில் அமைந்திருந்த ஒரு ஒலிவத் தோட்டம்.",
+          "இயேசுவின் வியர்வை இரத்தத்தின் பெருந்துளிகளாய் தரையில் விழுந்து கண்ணீரோடு ஜெபித்த இடம்.",
+          "'என் சித்தமல்ல, உம்முடைய சித்தமே செய்யப்படக்கடவது' என்று பிதாவிடம் இயேசு ஒப்புக்கொடுத்த தளம்."
+        ],
+        ref: "லூக்கா 22:39-44, மத்தேயு 26:36",
+        exp: "கெத்செமனே தோட்டத்தில் இயேசு சிலுவை மரணத்தின் பாத்திரத்தை ஏற்றுக்கொண்டு பிதாவின் சித்தத்திற்குக் கீழ்ப்படிந்தார்."
+      },
+      {
+        type: "✝️ இவர் ஒரு அப்போஸ்தலர்.",
+        answer: "பவுல்",
+        clues: [
+          "கமாலியேலின் பாதத்தருகே நியாயப்பிரமாணத்தைக் கற்றுக்கொண்ட பரிசேயன்.",
+          "முன்பு திருச்சபையைத் துன்புறுத்தி பின்னர் தமஸ்கு பாதையில் கிறிஸ்துவினால் ஆட்கொள்ளப்பட்டவர்.",
+          "புறஜாதிகளுக்கு சுவிசேஷத்தை அறிவித்து புதிய ஏற்பாட்டின் பல நிருபங்களை எழுதிய மாபெரும் ஊழியர்."
+        ],
+        ref: "அப்போஸ்தலர் 9:15, பிலிப்பியர் 3:5",
+        exp: "பவுல் கிறிஸ்துவுக்காக அநேக பாடுகளை அனுபவித்து சுவிசேஷத்தை உரோமப் பேரரசு முழுவதும் பரப்பினார்."
+      },
+      {
+        type: "👤 இது ஒரு சுவிசேஷகர்.",
+        answer: "யோவான் மாற்கு",
+        clues: [
+          "எருசலேமில் சபை கூடி ஜெபித்த வீட்டின் மரியாள் என்பவளின் அன்பு மகன்.",
+          "பவுல் மற்றும் பர்னபாவின் முதல் பயணத்தில் உதவியாளராய் சென்று பாதியில் திரும்பிவிட்ட வாலிபன்.",
+          "பிற்பாடு பவுலுக்கு ஊழியத்தில் உபயோகமுள்ளவனாகி இரண்டாவது சுவிசேஷப் புத்தகத்தை எழுதியவர்."
+        ],
+        ref: "அப்போஸ்தலர் 12:12, 13:13, 2 தீமோத்தேயு 4:11",
+        exp: "மாற்கு ஆரம்பத்தில் பலவீனப்பட்டாலும் பின்னர் உண்மையாய் உழைத்து சுவிசேஷத்தை எழுதிய ஊழியராக உயர்ந்தார்."
+      },
+      {
+        type: "👤 இது ஒரு பெண்மணி.",
+        answer: "பிரிஸ்கில்லாள்",
+        clues: [
+          "ரோமிலிருந்து நீக்கப்பட்டதால் கொரிந்துவுக்கு வந்த கூடாரம் பண்ணும் தொழில் செய்த பெண்.",
+          "தன் கணவன் ஆக்கில்லாவுடன் சேர்ந்து பவுலைத் தன் வீட்டில் ஏற்றுக்கொண்டு ஆதரித்தவர்.",
+          "வேதவல்லுநரான அப்பொல்லோவுக்கு தேவனுடைய வழியை அதிக திட்டமாய் போதித்த பெண் விசுவாசி."
+        ],
+        ref: "அப்போஸ்தலர் 18:2, 18:26",
+        exp: "பிரிஸ்கில்லாளும் ஆக்கில்லாவும் தங்கள் வீட்டையே சபையாக மாற்றி ஊழியர்களுக்கு உற்ற துணையாய் நின்றனர்."
+      },
+      {
+        type: "👤 இவர் ஒரு மருத்துவர்.",
+        answer: "லூக்கா",
+        clues: [
+          "பவுல் அப்போஸ்தலனால் 'பிரியமான வைத்தியன்' என்று அன்போடு அழைக்கப்பட்ட கிரேக்க விசுவாசி.",
+          "பவுலின் சிறையிருப்பு காலம் முழுவதும் அவரோடு உண்மையாய் உடனிருந்த வரலாற்று ஆசிரியர்.",
+          "ஆராய்ச்சி செய்து லூக்கா சுவிசேஷத்தையும் அப்போஸ்தலர் நடபடிகளையும் பதிவு செய்தவர்."
+        ],
+        ref: "கொலோசெயர் 4:14, லூக்கா 1:1-4",
+        exp: "லூக்கா பரிசுத்த ஆவியின் ஏவுதலால் இயேசுவின் ஜீவியத்தையும் ஆதி சபையின் வரலாற்றையும் எழுதினார்."
+      },
+      {
+        type: "👤 இது ஒரு சீஷன்.",
+        answer: "அனனியா",
+        clues: [
+          "தமஸ்கு பட்டணத்தில் வாழ்ந்த நற்சாட்சி பெற்ற ஒரு பக்தியுள்ள சீஷன்.",
+          "பார்வையிழந்து உபவாசித்திருந்த சவுலின்மேல் கைகளை வைக்க ஆண்டவரால் அனுப்பப்பட்டவர்.",
+          "பயத்தை உதறிவிட்டு சவுலை 'சகோதரனாகிய சவுலே' என்று அன்போடு அழைத்து ஜெபித்தவர்."
+        ],
+        ref: "அப்போஸ்தலர் 9:10-17",
+        exp: "அனனியா தேவனுடைய சத்தத்திற்குக் கீழ்ப்படிந்து சவுலின் கண்கள் திறக்கவும் அவர் ஆவியைப் பெறவும் உதவினார்."
+      },
+      {
+        type: "🏛️ இது ஒரு நகரம்.",
+        answer: "பெரோயா",
+        clues: [
+          "மாசிதோனியா மாகாணத்தில் பவுலும் சீலாவும் சென்று சுவிசேஷம் அறிவித்த ஒரு பட்டணம்.",
+          "தெசலோனிக்கே பட்டணத்தாரைவிட நற்குணசாலிகளாய் இருந்த மக்கள் வாழ்ந்த இடம்.",
+          "காரியங்கள் இப்படியிருக்கிறதா என்று தினமும் வேதவாக்கியங்களை ஆராய்ந்து பார்த்த சபையார் வாழ்ந்த ஊர்."
+        ],
+        ref: "அப்போஸ்தலர் 17:10-12",
+        exp: "பெரோயா மக்கள் நல்மனதோடு வசனத்தை ஏற்றுக்கொண்டு அனுதினமும் வேதத்தை ஆராய்ந்து பார்த்து விசுவாசிகளாயினர்."
+      },
+      {
+        type: "🏛️ இது ஒரு நகரம்.",
+        answer: "அந்தியோகியா",
+        clues: [
+          "சீரியாவின் பெரிய நகரம்; புறஜாதி விசுவாசிகள் பெருமளவில் சேர்ந்த ஆதி சபை.",
+          "பர்னபாவும் பவுலும் ஓராண்டு காலம் தங்கி அநேகருக்கு உபதேசம் பண்ணின மிஷனரி தளம்.",
+          "இயேசுவின் சீஷர்கள் முதன்முதலில் 'கிறிஸ்தவர்கள்' என்று அழைக்கப்பட்ட வரலாற்று நகரம்."
+        ],
+        ref: "அப்போஸ்தலர் 11:20-26, 13:1-3",
+        exp: "அந்தியோகியா சபை உலக மிஷனரி ஊழியத்தின் தலைமையகமாக மாறி பவுலையும் பர்னபாவையும் அனுப்பியது."
+      },
+      {
+        type: "🌊 இது ஒரு நதி.",
+        answer: "யோர்தான்",
+        clues: [
+          "இஸ்ரவேல் தேசத்தின் வழியாக ஓடும் மிக முக்கியமான வரலாற்று நதி.",
+          "யோசுவாவின் தலைமையில் ஆசாரியர்களின் கால்கள் பட்டவுடன் இரண்டாகப் பிளந்த ஆறு.",
+          "யோவான் ஸ்நானகன் இயேசு கிறிஸ்துவுக்கு ஞானஸ்நானம் கொடுத்த புனித நதி."
+        ],
+        ref: "யோசுவா 3:15-17, மத்தேயு 3:13",
+        exp: "யோர்தான் நதியில் கர்த்தர் அற்புதங்களைச் செய்தார்; இயேசுவும் ஞானஸ்நானம் பெற்றார்."
+      },
+      {
+        type: "📍 இது ஒரு மலை.",
+        answer: "ஒலிவ மலை",
+        clues: [
+          "எருசலேம் நகரத்திற்கு கிழக்கே கீதரோன் பள்ளத்தாக்குக்கு அப்பால் அமைந்த மலை.",
+          "இயேசு எருசலேம் நகரத்தைப் பார்த்து கண்ணீர்விட்டு அழுத இடம்.",
+          "இயேசு உயிர்த்தெழுந்த பின்பு தன் சீடர்களின் கண்களுக்கு முன்பாக பரலோகத்திற்கு எழுந்தருளிச் சென்ற மலை."
+        ],
+        ref: "லூக்கா 19:41, அப்போஸ்தலர் 1:9-12",
+        exp: "ஒலிவ மலை இயேசுவின் ஜெப வாழ்க்கைக்கும் பரமேறுதலுக்கும் தொடர்புடைய மலையாகும்."
+      }
+    ],
+
+    adult: [
+      {
+        type: "👑 இவர் ஒரு ராஜாவும் ஆசாரியனுமாய் இருந்தார்.",
+        answer: "மெல்கிசேதேக்",
+        clues: [
+          "ஆபிரகாமை சந்தித்தார்.",
+          "ஆபிரகாமுக்கு அப்பத்தையும் திராட்சரசத்தையும் கொண்டு வந்தார்.",
+          "ஆதியாகமத்தில் சாலேமின் ராஜா என்று குறிப்பிடப்படுகிறார்."
+        ],
+        ref: "ஆதியாகமம் 14:18–20",
+        exp: "மெல்கிசேதேக்கு உன்னத ஆசாரியராக இருந்து நித்திய பிரதான ஆசாரியராகிய கிறிஸ்துவுக்கு நிழலாட்டமாய் விளங்கினார்."
+      },
+      {
+        type: "👤 இது ஒரு புத்திசாலி பெண்மணி.",
+        answer: "அபிகாயில்",
+        clues: [
+          "கார்மேலில் வாழ்ந்த புத்தியும் சவுந்தரியமும் உள்ள ஒரு விவேகமுள்ள பெண்.",
+          "தன் மதிகெட்ட கணவனான நாபால் தாவீதை நிந்தித்தபோது பதற்றப்படாமல் உணவுகளைக் கொண்டுவந்து சமாதானம் செய்தவள்.",
+          "தாவீது இரத்தப்பழி சுமக்காமல் தடுத்து, நாபாலின் மரணத்திற்குப் பின் தாவீதின் மனைவியானவள்."
+        ],
+        ref: "1 சாமுவேல் 25:3, 25:18-35",
+        exp: "அபிகாயில் தன் விவேகமான பேச்சினால் பெரும் அழிவைத் தடுத்து ஞானமுள்ள பெண்ணாகத் திகழ்ந்தார்."
+      },
+      {
+        type: "👤 இது ஒரு படைத்தலைவர்.",
+        answer: "பாராக்",
+        clues: [
+          "அபினோவாமின் மகன்; கெதேஸ் ஊரைச் சேர்ந்த ஒரு இஸ்ரவேல் போர்வீரன்.",
+          "'நீ என்னோடேகூட வந்தால் போவேன், வராவிட்டால் போகேன்' என்று தீர்க்கதரிசியிடம் கூறியவர்.",
+          "தெபொராளுடன் சேர்ந்து தாபோர் மலையிலிருந்து சிசெராவின் சேனைக்கு எதிராகப் போரிட்டு வென்றவர்."
+        ],
+        ref: "நியாயாதிபதிகள் 4:6-14, எபிரெயர் 11:32",
+        exp: "பாராக் விசுவாச வீரர்களின் பட்டியலில் இடம்பெற்று இஸ்ரவேலுக்கு மாபெரும் வெற்றியைத் தந்தார்."
+      },
+      {
+        type: "🔥 இவர் ஒரு நியாயாதிபதி.",
+        answer: "தெபொராள்",
+        clues: [
+          "லபிதோத்தின் மனைவி; இஸ்ரவேலை நியாயம் விசாரித்த ஒரே பெண் நியாயாதிபதி.",
+          "எப்பிராயீம் மலைத்தேசத்தில் பேரீச்சமரத்தின் கீழ் அமர்ந்து ஜனங்களுக்குத் தீர்ப்பு வழங்கிய தீர்க்கதரிசினி.",
+          "கானானிய ராஜாவாகிய யாபினுக்கு எதிராக எழும்பி 'இஸ்ரவேலில் தாயாக எழும்பினேன்' என்று பாடியவள்."
+        ],
+        ref: "நியாயாதிபதிகள் 4:4-5, 5:7",
+        exp: "தெபொராள் தேவனுடைய வார்த்தையை தைரியமாய் அறிவித்து ஜனங்களை வழிநடத்தினார்."
+      },
+      {
+        type: "👤 இது ஒரு நியாயாதிபதி.",
+        answer: "யெப்தா",
+        clues: [
+          "கீலேயாத் ஊரைச் சேர்ந்த பராக்கிரமசாலி; சகோதரர்களால் துரத்தப்பட்டு தோப் தேசத்தில் தங்கியவர்.",
+          "அம்மோனியருக்கு எதிரான போரில் வெற்றி கிடைத்தால் தன் வாசலில் எதிர்ப்படுவதை பலியிடுவதாகப் பொருத்தனை செய்தவர்.",
+          "தன் ஒரே மகள் தம்புரு வாசித்துக்கொண்டு எதிர்கொண்டு வந்ததால் நெஞ்சம் நொந்த நியாயாதிபதி."
+        ],
+        ref: "நியாயாதிபதிகள் 11:1, 11:30-35",
+        exp: "யெப்தா விசுவாசத்தினால் அம்மோனியரை முறியடித்தாலும் அவசரப் பொருத்தனையினால் பெரும் வேதனையை அடைந்தார்."
+      },
+      {
+        type: "🔥 இவர் ஒரு தீர்க்கதரிசி.",
+        answer: "நாத்தான்",
+        clues: [
+          "தாவீது ராஜாவின் அரசவையில் இருந்த தேவனுடைய உண்மையுள்ள தீர்க்கதரிசி.",
+          "தாவீதுக்கு கர்த்தருடைய நித்திய சிங்காசன உடன்படிக்கையை அறிவித்தவர்.",
+          "ஏழை மனிதனின் ஒரே ஆட்டுக்குட்டி உவமையைக் கூறி 'அந்த மனிதன் நீயே' என்று தாவீதின் பாவத்தைக் கடிந்துகொண்டவர்."
+        ],
+        ref: "2 சாமுவேல் 7:4-17, 12:1-7",
+        exp: "நாத்தான் அஞ்சாமல் ராஜாவின் பாவத்தைக் கடிந்துகொண்டு தாவீது மனந்திரும்புவதற்குக் காரணமாய் இருந்தார்."
+      },
+      {
+        type: "👤 இது ஒரு ஆலோசகர்.",
+        answer: "அகித்தோப்பேல்",
+        clues: [
+          "கிலோ ஊரைச் சேர்ந்தவர்; தாவீது ராஜாவின் தலைமை ஆலோசனைக்காரர்.",
+          "அவருடைய ஆலோசனை தேவனிடத்தில் கேட்கப்படும் தெய்வவாக்கு போல அந்த நாட்களில் மதிக்கப்பட்டது.",
+          "அப்சலோமின் கலகத்தில் சாய்ந்து, தன் ஆலோசனை தள்ளப்பட்டதால் தூக்கிட்டு மரித்தவர்."
+        ],
+        ref: "2 சாமுவேல் 15:12, 17:23",
+        exp: "அகித்தோப்பேல் புத்திசாலியாய் இருந்தும் துரோகத்தின் வழியில் சென்றதால் பரிதாபகரமான முடிவை அடைந்தார்."
+      },
+      {
+        type: "⚔️ இவர் ஒரு உத்தம போர்வீரன்.",
+        answer: "உரியா",
+        clues: [
+          "தாவீதின் முப்பது பராக்கிரமசாலிகளில் ஒருவனான ஏத்திய மனிதன்.",
+          "போர்க்களத்தில் உடன்படிக்கைப் பெட்டி இருக்கும்போது தன் சொந்த வீட்டிற்குச் சென்று இளைப்பாற மறுத்த உத்தமன்.",
+          "தாவீதின் சதியினால் கடுமையான போரின் முன்னணியில் நிறுத்தப்பட்டு கொல்லப்பட்ட பத்ஷேபாவின் கணவன்."
+        ],
+        ref: "2 சாமுவேல் 11:3-17",
+        exp: "உரியா தன் கடமையிலும் தோழர்களிடமும் உண்மையுள்ளவனாய் வாழ்ந்து அநியாயமாய் மடிந்தான்."
+      },
+      {
+        type: "🔥 இவர் ஒரு தீர்க்கதரிசி.",
+        answer: "எலிசா",
+        clues: [
+          "சாபாத்தின் மகன்; பன்னிரண்டு ஏர் பூட்டி உழுதுகொண்டிருந்தபோது தீர்க்கதரிசியால் அழைக்கப்பட்டவர்.",
+          "எலியாவின் சால்வையைப் பெற்றுக்கொண்டு 'இரட்டிப்பான ஆவியின் வரம்' பெற்றுக்கொண்டவர்.",
+          "யோர்தான் நதியைப் பிளந்து, எரிகோவின் கெட்ட தண்ணீரை உப்பினால் நல்ல தண்ணீராக மாற்றிய அற்புத தீர்க்கதரிசி."
+        ],
+        ref: "1 ராஜாக்கள் 19:19, 2 ராஜாக்கள் 2",
+        exp: "எலிசா எலியாவின் ஊழியத்தைத் தொடர்ந்து இஸ்ரவேலில் எண்ணற்ற அற்புதங்களைச் செய்தார்."
+      },
+      {
+        type: "⚔️ இவர் ஒரு படைத்தலைவர்.",
+        answer: "நாகமான்",
+        clues: [
+          "சீரியா ராஜாவின் சேனாவதி; பெரிய வீரனாயிருந்தும் குஷ்டரோகியாயிருந்த மனிதன்.",
+          "இஸ்ரவேல் சிறுமியின் பேச்சைக் கேட்டு எலிசா தீர்க்கதரிசியின் வீட்டின் வாசலில் வந்து நின்றவர்.",
+          "யோர்தான் நதியில் ஏழு முறை முழுகியபோது சரீரம் சிறுபிள்ளையின் உடலைப்போல சுத்தமான அதிகாரி."
+        ],
+        ref: "2 ராஜாக்கள் 5:1-14",
+        exp: "நாகமான் தன் சுயபெருமையை விட்டு தேவனுடைய கட்டளைக்குக் கீழ்ப்படிந்து சுகமடைந்தார்."
+      },
+      {
+        type: "👤 இது ஒரு வேலைக்காரன்.",
+        answer: "கேயாசி",
+        clues: [
+          "எலிசா தீர்க்கதரிசியின் கூடவே இருந்த ஊழியக்காரன்.",
+          "நாகமான் கொடுத்த வெள்ளியையும் ஆடைகளையும் பேராசையினால் பின்சென்று பொய் சொல்லிப் பெற்றுக்கொண்டவன்.",
+          "எலிசாவின் சாபத்தினால் நாகமானின் குஷ்டரோகம் தன் மீதும் தன் சந்ததி மீதும் பிடித்த மனிதன்."
+        ],
+        ref: "2 ராஜாக்கள் 5:20-27",
+        exp: "கேயாசி அற்புதங்களைக் கண்டும் பேராசையினால் தேவ ஊழியத்தில் வஞ்சனை செய்து அழிவைச் சம்பாதித்தான்."
+      },
+      {
+        type: "📚 இது ஒரு வேதாகம புத்தகம்.",
+        answer: "ஒபதியா",
+        clues: [
+          "பழைய ஏற்பாட்டில் ஒரே ஒரு அதிகாரத்தை மட்டுமே கொண்ட மிகச் சிறிய தீர்க்கதரிசனப் புத்தகம்.",
+          "ஏசாவின் சந்ததியான ஏதோம் தேசத்தின் அகந்தைக்கும் அழிவுக்கும் எதிரான நியாயத்தீர்ப்பு.",
+          "சீயோன் மலையிலே இரட்சிப்பு உண்டாயிருக்கும் என்று அறிவிக்கும் தீர்க்கதரிசி."
+        ],
+        ref: "ஒபதியா 1",
+        exp: "ஒபதியா ஏதோம் தேசத்தின் வன்முறைக்கு வரவிருக்கும் தேவனுடைய நியாயத்தீர்ப்பை அறிவித்தார்."
+      },
+      {
+        type: "🔥 இவர் ஒரு தீர்க்கதரிசி.",
+        answer: "ஆகாய்",
+        clues: [
+          "பாபிலோன் சிறையிருப்பிலிருந்து திரும்பிய யூதர்களை உற்சாகப்படுத்திய தீர்க்கதரிசி.",
+          "'நீங்கள் தட்டுமுட்டு வீடுகளில் குடியிருக்க இது காலமோ?' என்று ஆலயத்தைக் கட்டக் கடிந்துகொண்டவர்.",
+          "'இந்த பிந்தின ஆலயத்தின் மகிமை முந்தின ஆலயத்தின் மகிமையைப் பார்க்கிலும் பெரிதாயிருக்கும்' என்றவர்."
+        ],
+        ref: "ஆகாய் 1:4, 2:9",
+        exp: "ஆகாய் தீர்க்கதரிசி பாழாய்க்கிடந்த தேவனுடைய ஆலயத்தை மீண்டும் கட்டும்படி ஜனங்களை ஊக்கப்படுத்தினார்."
+      },
+      {
+        type: "🔥 இவர் ஒரு தீர்க்கதரிசி.",
+        answer: "செப்பனியா",
+        clues: [
+          "யோசியா ராஜாவின் காலத்தில் தீர்க்கதரிசனம் உரைத்த எசேக்கியா ராஜாவின் வழித்தோன்றல்.",
+          "'கர்த்தருடைய பெரிய நாள் சமீபமாயிருக்கிறது' என்று நியாயத்தீர்ப்பை முழங்கினவர்.",
+          "'அவர் உன் நடுவில் இருந்து அன்பினால் களிகூர்ந்து கெம்பீரமாய் மகிழுவார்' என்று ஆறுதல் உரைத்தவர்."
+        ],
+        ref: "செப்பனியா 1:14, 3:17",
+        exp: "செப்பனியா தேவனுடைய நீதியான நியாயத்தீர்ப்பையும் இரட்சிப்பையும் முன்கூறினார்."
+      },
+      {
+        type: "📚 இது ஒரு வேதாகம புத்தகம்.",
+        answer: "மல்கியா",
+        clues: [
+          "பழைய ஏற்பாட்டின் கடைசிப் புத்தகம்; இதன் ஆசிரியரின் பெயருக்கு 'என் தூதன்' என்று பொருள்.",
+          "தசமபாகத்தையும் காணிக்கைகளையும் கர்த்தருடைய பண்டகசாலைக்குக் கொண்டுவர அறைகூவல் விடுத்த தீர்க்கதரிசி.",
+          "நீதியின் சூரியன் தம்முடைய செட்டைகளின் கீழ் ஆரோக்கியத்தோடு உதிப்பார் என்று மேசியாவைக் குறித்து உரைத்த நூல்."
+        ],
+        ref: "மல்கியா 3:10, 4:2",
+        exp: "மல்கியா ஆசாரியர்களின் சீர்கேட்டைக் கண்டித்து மேசியாவின் வருகைக்கு வழியை ஆயத்தப்படுத்தினார்."
+      },
+      {
+        type: "👤 இவர் ஒரு வேதபாரகர்.",
+        answer: "எஸ்றா",
+        clues: [
+          "ஆரோனின் வம்சத்தில் வந்த வேதபாரகனும் ஆசாரியனுமான தேவபக்தன்.",
+          "கர்த்தருடைய வேதத்தை ஆராயவும் அதன்படி செய்யவும் இஸ்ரவேலுக்குப் போதிக்கவும் தன் இருதயத்தைப் பக்குவப்படுத்தியவர்.",
+          "பாபிலோனிலிருந்து திரும்பிவந்த மக்களுக்கு நியாயப்பிரமாணத்தை வாசித்து ஆவிக்குரிய மறுமலர்ச்சியை ஏற்படுத்தியவர்."
+        ],
+        ref: "எஸ்றா 7:10, 10:1-12",
+        exp: "எஸ்றா சிறையிருப்பிலிருந்து மீண்ட மக்களுக்கு தேவனுடைய வார்த்தையை விளக்கி வழிகாட்டினார்."
+      },
+      {
+        type: "👤 இவர் ஒரு ஆளுநர்.",
+        answer: "நெகேமியா",
+        clues: [
+          "பெர்சிய ராஜாவாகிய அர்தசஷ்டாவுக்குப் பானபாத்திரக்காரனாய் இருந்த உயர் அதிகாரி.",
+          "எருசலேமின் மதில்கள் இடிந்து கிடப்பதைக் கேட்டு அழுது உபவாசித்து ஜெபித்த தலைவர்.",
+          "சன்பல்லாத், தொபியாவின் கடும் எதிர்ப்புகளுக்கு மத்தியில் ஐம்பத்திரண்டு நாட்களில் மதிலைக் கட்டி முடித்தவர்."
+        ],
+        ref: "நெகேமியா 1:4, 6:15",
+        exp: "நெகேமியா ஜெபத்தையும் விழிப்புணர்வையும் கொண்டு எருசலேம் மதில்களைக் கட்டி முடித்தார்."
+      },
+      {
+        type: "👑 இவர் யூதாவின் அதிபதி.",
+        answer: "செருபாபேல்",
+        clues: [
+          "தாவீதின் அரச வம்சத்தில் வந்த யூதாவின் தலைவன்; சலாத்தியேலின் மகன்.",
+          "பாபிலோனிலிருந்து முதல் அணியாகத் திரும்பிய யூதர்களை வழிநடத்தி ஆலயத்திற்கு அஸ்திபாரம் போட்டவர்.",
+          "'பலத்தினாலும் அல்ல, பராக்கிரமத்தினாலும் அல்ல, என் ஆவியினாலேயே ஆகும்' என்ற வாக்குத்தத்தத்தைப் பெற்ற தலைவர்."
+        ],
+        ref: "எஸ்றா 3:8, சகரியா 4:6-9",
+        exp: "செருபாபேல் தடைகளை தேவனுடைய ஆவியின் துணையோடு வென்று இரண்டாவது ஆலயத்தைக் கட்டினார்."
+      },
+      {
+        type: "👤 இது ஒரு விசுவாசி.",
+        answer: "ஒநேசிமு",
+        clues: [
+          "கொலோசே பட்டணத்து பிலேமோன் என்பவனிடமிருந்து பணத்தைத் திருடிக்கொண்டு தப்பியோடிய அடிமை.",
+          "ரோம சிறைச்சாலையிலிருந்த பவுலைச் சந்தித்து கிறிஸ்துவுக்குள் மறுபிறப்படைந்தவர்.",
+          "பவுலினால் 'என் குடல்களையடுத்தவன்' என்றும் 'பிரியமுள்ள சகோதரன்' என்றும் நிருபத்தில் பரிந்துரைக்கப்பட்ட ஊழியர்."
+        ],
+        ref: "பிலேமோன் 1:10-16",
+        exp: "ஒநேசிமு கிறிஸ்துவை ஏற்றபின் மிகவும் பிரயோஜனமுள்ள உத்தம ஊழியராக மாறினார்."
+      },
+      {
+        type: "👤 இது ஒரு சபை தலைவர்.",
+        answer: "பிலேமோன்",
+        clues: [
+          "கொலோசே நகரில் வாழ்ந்த ஒரு வசதியான கிறிஸ்தவ எஜமான்; பவுலின் அன்பான கூட்டாளி.",
+          "தன் வீட்டில் திருச்சபை கூடிவர இடமளித்து விசுவாசிகளை உபசரித்த மனிதர்.",
+          "தப்பியோடிய தன் அடிமையான ஒநேசிமுவை இனி அடிமையாக அல்லாமல் அன்பு சகோதரனாக ஏற்றுக்கொள்ளும்படி பவுலால் கேட்டுக்கொள்ளப்பட்டவர்."
+        ],
+        ref: "பிலேமோன் 1:1-17",
+        exp: "பிலேமோனுக்கு பவுல் எழுதிய நிருபம் கிறிஸ்தவ மன்னிப்பையும் அன்பின் மேன்மையையும் விளக்குகிறது."
+      },
+      {
+        type: "🏛️ இது ஒரு நீதிமன்ற தளம்.",
+        answer: "அரியோப்பாகு",
+        clues: [
+          "கிரேக்க தலைநகரான ஏதென்ஸ் நகரத்திலிருந்த புகழ்பெற்ற மார்ஸ் மேடு (நீதிமன்ற மேடை).",
+          "தத்துவஞானிகளான ஸ்தோயிக்கரும் எப்பிக்கூரரும் கூடி புதிய விவாதங்களைப் பேசின இடம்.",
+          "பவுல் அப்போஸ்தலன் நின்று 'அறியப்படாத தேவனுக்கு' என்று எழுதப்பட்டிருந்த பீடத்தைக் குறிப்பிட்டுப் பிரசங்கித்த தளம்."
+        ],
+        ref: "அப்போஸ்தலர் 17:19-34",
+        exp: "அரியோப்பாகு மேடையில் பவுல் ஒரே மெய்யான தேவனைப் பற்றி தத்துவஞானிகளுக்குப் பிரசங்கித்தார்."
+      },
+      {
+        type: "🏛️ இது ஒரு நகரம்.",
+        answer: "ஏதென்ஸ்",
+        clues: [
+          "பண்டைய கிரேக்கத்தின் மாபெரும் கலாச்சார, தத்துவ மற்றும் கலைத் தலைநகரம்.",
+          "நகரமெங்கும் விக்கிரகங்கள் நிறைந்திருப்பதைக் கண்டு பவுலின் ஆவி அவருக்குள் கொதிப்புண்ட ஊர்.",
+          "சாக்ரட்டீஸ், பிளேட்டோ போன்ற அறிஞர்கள் வாழ்ந்த உலக ஞானத்தின் பெருமை மிகுந்த பட்டணம்."
+        ],
+        ref: "அப்போஸ்தலர் 17:16-21",
+        exp: "ஏதென்ஸ் உலக ஞானத்தில் உச்சத்தில் இருந்தபோதிலும் ஆவிக்குரிய அறியாமையில் இருந்தது; பவுல் அங்கே பிரசங்கித்தார்."
+      },
+      {
+        type: "🏛️ இது ஒரு நகரம்.",
+        answer: "லீஸ்திரா",
+        clues: [
+          "லிகவோனியா மாகாணத்தில் அமைந்த ஒரு புறஜாதி பட்டணம்.",
+          "பிறவிச் சப்பாணியை பவுல் சுகமாக்கியபோது மக்கள் பவுலையும் பர்னபாவையும் தெய்வங்கள் என்று நினைத்து பலியிட முயன்ற ஊர்.",
+          "பிற்பாடு யூதர்களின் தூண்டுதலால் பவுலைக் கல்லெறிந்து மரித்துப்போனான் என்று பட்டணத்திற்கு வெளியே இழுத்துப் போட்ட இடம்."
+        ],
+        ref: "அப்போஸ்தலர் 14:8-19",
+        exp: "லீஸ்திரா பட்டணத்தில் பவுல் கல்லெறியப்பட்டாலும் உயிர்த்தெழுந்து நின்றார்; அங்கே தீமோத்தேயு உருவானார்."
+      },
+      {
+        type: "🏛️ இது ஒரு துறைமுக நகரம்.",
+        answer: "மிலேத்து",
+        clues: [
+          "ஆசியாவின் கடற்கரையில் எபேசுவுக்கு அருகில் அமைந்த ஒரு துறைமுக நகரம்.",
+          "பவுல் தன் கடைசிப் பயணத்தில் எபேசு சபையின் மூப்பர்களை வரவழைத்து பிரியாவிடை கொடுத்த இடம்.",
+          "'என் ஜீவனையும் அருமையாக எண்ணேன்' என்று கூறி கண்ணீரோடு கட்டித்தழுவி முத்தமிட்டு வழியனுப்பிய தளம்."
+        ],
+        ref: "அப்போஸ்தலர் 20:15-38",
+        exp: "மிலேத்து கடற்கரையில் பவுல் எபேசு மூப்பர்களுக்கு ஆவிக்குரிய பொறுப்புகளைக் கண்ணீரோடு நினைவூட்டினார்."
+      },
+      {
+        type: "📍 இது ஒரு தீவு.",
+        answer: "பத்மு",
+        clues: [
+          "ஏஜியன் கடலில் அமைந்த பாறைகள் நிறைந்த ஒரு சிறிய தீவு.",
+          "ரோமப் பேரரசினால் கைதிகளை நாடுகடத்தும் சிறைத் தீவாகப் பயன்படுத்தப்பட்ட இடம்.",
+          "அப்போஸ்தலனாகிய யோவான் தேவவசனத்தினிமித்தம் தள்ளப்பட்டு வெளிப்படுத்தல் தரிசனங்களைப் பெற்ற தீவு."
+        ],
+        ref: "வெளிப்படுத்தல் 1:9",
+        exp: "பத்மு தீவில் தனிமைப்படுத்தப்பட்ட யோவான் ஆவிக்குள்ளாகி மகிமையின் கிறிஸ்துவையும் தரிசனங்களையும் கண்டார்."
+      },
+      {
+        type: "📍 இது ஒரு தீவு.",
+        answer: "மெலிதா",
+        clues: [
+          "மத்தியதரைக் கடலில் பவுல் சென்ற கப்பல் புயலில் உடைந்து பயணிகள் பலகைகளில் மிதந்து தப்பிய தீவு.",
+          "அங்கிருந்த மக்கள் மிகுந்த தயவு பாராட்டி குளிர்நிமித்தம் நெருப்பு மூட்டி உபசரித்தனர்.",
+          "நெருப்பிலிருந்து புறப்பட்ட ஒரு விஷ விரியன்பாம்பு பவுலின் கையில் கடித்தும் எந்த சேதமும் உண்டாகாத இடம்."
+        ],
+        ref: "அப்போஸ்தலர் 28:1-10",
+        exp: "மெலிதா தீவில் பவுல் விஷப்பாம்பின் தாக்குதலிலிருந்து பாதுகாக்கப்பட்டு நோயாளிகளைக் குணமாக்கினார்."
+      },
+      {
+        type: "👤 இது ஒரு வம்சத்தினர்.",
+        answer: "மேவிபோசேத்",
+        clues: [
+          "யோனத்தானின் மகன்; சவுல் ராஜாவின் பேரன்.",
+          "சிறுவயதில் தாதி தூக்கிக்கொண்டு ஓடுகையில் கீழே விழுந்ததால் இரண்டு கால்களும் முடமானவர்.",
+          "தாவீது யோனத்தானின் உடன்படிக்கையை நினைவுகூர்ந்து தினமும் தன் ராஜ பந்தியில் உட்கார்ந்து உணவருந்தச் செய்த மனிதர்."
+        ],
+        ref: "2 சாமுவேல் 4:4, 9:1-13",
+        exp: "மேவிபோசேத் தன்னைத் தாழ்த்தினாலும் தாவீது ராஜா அவனுக்கு அளவற்ற கிருபையைத் தந்தார்."
+      },
+      {
+        type: "👤 இவர் ஒரு தலைமைச் சிற்பி.",
+        answer: "பெசலெயேல்",
+        clues: [
+          "யூதா கோத்திரத்து ஊரின் பேரன்; ஊரியின் மகன்.",
+          "ஆசரிப்புக் கூடாரத்தின் சகல வேலைகளையும் செய்ய தேவ ஆவியினாலும் விசேஷித்த திறமையினாலும் நிரப்பப்பட்ட கலைஞர்.",
+          "பொன்னிலும் வெள்ளியிலும் வெண்கலத்திலும் வேலை செய்யவும் உடன்படிக்கைப் பெட்டியை உருவாக்கவும் நியமிக்கப்பட்டவர்."
+        ],
+        ref: "யாத்திராகமம் 31:1-5",
+        exp: "பெசலெயேல் பரிசுத்த ஆவியின் வரத்தினால் உடன்படிக்கைப் பெட்டியையும் கூடாரத்தையும் நேர்த்தியாக உருவாக்கினார்."
+      },
+      {
+        type: "👤 இவர் ஒரு மீட்பர்.",
+        answer: "போவாஸ்",
+        clues: [
+          "பெத்லகேம் ஊரில் வாழ்ந்த மிகுந்த ஆஸ்திக்காரனும் பராக்கிரமசாலியுமான செல்வந்தர்.",
+          "தன் வயலில் கதிர் பொறுக்க வந்த அந்நிய மோவாபியப் பெண்ணாகிய ரூத்துக்கு தயவு பாராட்டியவர்.",
+          "சுதந்தரத்தை மீட்கும் முறைமையின்படி ரூத்தை மணந்து தாவீது ராஜாவின் தாத்தாவான ஓபேதைப் பெற்றெடுத்தவர்."
+        ],
+        ref: "ரூத் 2:1-12, 4:9-17",
+        exp: "போவாஸ் தாராள சிந்தையுள்ள மீட்பராகத் திகழ்ந்து கிறிஸ்துவுக்கு நிழலாட்டமாய் விளங்கினார்."
+      },
+      {
+        type: "👤 இவர் ஒரு வேத போதகர்.",
+        answer: "கமாலியேல்",
+        clues: [
+          "ஜனங்கள் எல்லாராலும் கனம் பெற்ற பரிசேயனும் நியாயப்பிரமாண போதகனுமான பெரியவர்.",
+          "பவுல் அப்போஸ்தலன் சிறுவயதில் இவருடைய பாதத்தருகே அமர்ந்து வேதத்தைக் கற்றுக்கொண்டார்.",
+          "ஆலோசனை சங்கத்தில் 'இந்த யோசனை மனுஷரால் உண்டாயிருந்தால் ஒழிந்துபோம், தேவனால் உண்டாயிருந்தால் அழிக்கமாட்டீர்கள்' என்று அறிவுறுத்தியவர்."
+        ],
+        ref: "அப்போஸ்தலர் 5:34-39",
+        exp: "கமாலியேல் தன் சாந்தமான ஞானத்தினால் அப்போஸ்தலர்கள் கொலை செய்யப்படாமல் தடுத்து வழிவிட்டார்."
+      }
+    ]
+  };
+
+  /* --------------------------------------------------------
+     2. TAMIL SYLLABIC GRAPHEME SEGMENTER
+  -------------------------------------------------------- */
+  function extractTamilGraphemes(word) {
+    if (!word) return [];
+    if (typeof Intl !== 'undefined' && Intl.Segmenter) {
+      try {
+        const seg = new Intl.Segmenter('ta', { granularity: 'grapheme' });
+        return Array.from(seg.segment(word), s => s.segment);
+      } catch (e) {}
+    }
+    const clusterRegex = /[\u0B80-\u0BFF][\u0BBE-\u0BCD\u0BD7]*/g;
+    const matches = word.match(clusterRegex);
+    return matches || word.split('');
+  }
+
+  /* --------------------------------------------------------
+     3. AUDIO SYNTHESIZER (Web Audio API)
+  -------------------------------------------------------- */
+  class SoundFX {
+    constructor() {
+      this.ctx = null;
+      this.enabled = true;
+    }
+    init() {
+      if (!this.ctx) {
+        const AudioClass = window.AudioContext || window.webkitAudioContext;
+        this.ctx = new AudioClass();
+      }
+      if (this.ctx && this.ctx.state === 'suspended') this.ctx.resume();
+    }
+    tone(freq, type, dur, gain = 0.15) {
+      if (!this.enabled) return;
+      this.init();
+      try {
+        const o = this.ctx.createOscillator();
+        const g = this.ctx.createGain();
+        o.type = type;
+        o.frequency.setValueAtTime(freq, this.ctx.currentTime);
+        g.gain.setValueAtTime(gain, this.ctx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + dur);
+        o.connect(g);
+        g.connect(this.ctx.destination);
+        o.start();
+        o.stop(this.ctx.currentTime + dur);
+      } catch (e) {}
+    }
+    clue() {
+      this.tone(520, 'triangle', 0.2, 0.1);
+      setTimeout(() => this.tone(659, 'sine', 0.25, 0.12), 70);
+    }
+    correct() {
+      [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => {
+        setTimeout(() => this.tone(f, 'triangle', 0.4, 0.2), i * 90);
+      });
+    }
+    wrong() {
+      this.tone(280, 'sine', 0.35, 0.15);
+      setTimeout(() => this.tone(220, 'sine', 0.45, 0.18), 100);
+    }
+    tick() { this.tone(850, 'sine', 0.08, 0.08); }
+    fanfare() {
+      [440, 440, 440, 554, 659, 880].forEach((f, i) => {
+        setTimeout(() => this.tone(f, 'sawtooth', 0.4, 0.15), i * 140);
+      });
+    }
+  }
+  const sfx = new SoundFX();
+
+  /* --------------------------------------------------------
+     4. CONFETTI PARTICLE SYSTEM
+  -------------------------------------------------------- */
+  const canvas = document.getElementById('confettiCanvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let animId = null;
+
+  function resizeC() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  window.addEventListener('resize', resizeC);
+  resizeC();
+
+  function triggerConfetti(dur = 2500) {
+    resizeC();
+    const colors = ['#f59e0b', '#38bdf8', '#10b981', '#ec4899', '#facc15', '#ffffff'];
+    particles = [];
+    for (let i = 0; i < 110; i++) {
+      particles.push({
+        x: canvas.width / 2 + (Math.random() * 160 - 80),
+        y: canvas.height / 2 + (Math.random() * 80 - 40),
+        vx: (Math.random() - 0.5) * 14,
+        vy: -Math.random() * 12 - 5,
+        size: Math.random() * 8 + 5,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        rot: Math.random() * 360,
+        rotSpd: (Math.random() - 0.5) * 8,
+        opacity: 1
+      });
+    }
+    if (animId) cancelAnimationFrame(animId);
+    const start = Date.now();
+    function loop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const elapsed = Date.now() - start;
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.35;
+        p.rot += p.rotSpd;
+        if (elapsed > dur * 0.65) p.opacity -= 0.03;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rot * Math.PI) / 180);
+        ctx.globalAlpha = Math.max(0, p.opacity);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.7);
+        ctx.restore();
+      });
+      if (elapsed < dur && particles.some(p => p.opacity > 0)) animId = requestAnimationFrame(loop);
+      else ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    loop();
+  }
+
+  /* --------------------------------------------------------
+     5. PERSISTENCE & DATA MANAGEMENT
+  -------------------------------------------------------- */
+  function getConfig() {
+    try {
+      return JSON.parse(localStorage.getItem('tb_prize_cfg')) || { p1: 9, p2: 8, p3: 7, p4: 6 };
+    } catch(e) {
+      return { p1: 9, p2: 8, p3: 7, p4: 6 };
+    }
+  }
+
+  function saveConfig(cfg) {
+    localStorage.setItem('tb_prize_cfg', JSON.stringify(cfg));
+  }
+
+  function getTimerConfig() {
+    try {
+      return JSON.parse(localStorage.getItem('tb_timer_cfg')) || { mode: 'seconds', value: 30 };
+    } catch(e) {
+      return { mode: 'seconds', value: 30 };
+    }
+  }
+
+  function saveTimerConfig(cfg) {
+    localStorage.setItem('tb_timer_cfg', JSON.stringify(cfg));
+  }
+
+  function getPeriodDurationMs(periodType) {
+    const map = {
+      '1h': 1 * 3600 * 1000,
+      '2h': 2 * 3600 * 1000,
+      '3h': 3 * 3600 * 1000,
+      '6h': 6 * 3600 * 1000,
+      '12h': 12 * 3600 * 1000,
+      '1d': 24 * 3600 * 1000,
+      '2d': 2 * 24 * 3600 * 1000,
+      '3d': 3 * 24 * 3600 * 1000,
+      '7d': 7 * 24 * 3600 * 1000
+    };
+    return map[periodType] || (24 * 3600 * 1000);
+  }
+
+  function getActiveEvent() {
+    try {
+      let ev = JSON.parse(localStorage.getItem('tb_active_event'));
+      if (!ev || !ev.id) {
+        ev = {
+          id: 'event_' + Date.now(),
+          name: 'நிகழ்வு 1',
+          periodType: '1d',
+          startTime: Date.now(),
+          endTime: Date.now() + 24 * 3600 * 1000
+        };
+        localStorage.setItem('tb_active_event', JSON.stringify(ev));
+      }
+      return ev;
+    } catch(e) {
+      const fallback = {
+        id: 'event_' + Date.now(),
+        name: 'நிகழ்வு 1',
+        periodType: '1d',
+        startTime: Date.now(),
+        endTime: Date.now() + 24 * 3600 * 1000
+      };
+      return fallback;
+    }
+  }
+
+  function saveActiveEvent(ev) {
+    localStorage.setItem('tb_active_event', JSON.stringify(ev));
+  }
+
+  function getArchivedEvents() {
+    try {
+      return JSON.parse(localStorage.getItem('tb_events_archive')) || [];
+    } catch(e) {
+      return [];
+    }
+  }
+
+  function saveArchivedEvents(list) {
+    localStorage.setItem('tb_events_archive', JSON.stringify(list));
+  }
+
+  function getEventStatus(event) {
+    if (!event) return { status: 'active', label: '🟢 செயலில் உள்ளது', remainingStr: 'செயலில் உள்ளது' };
+    const now = Date.now();
+    if (now >= event.endTime) {
+      return { status: 'ended', label: '🔴 முடிந்துவிட்டது', remainingStr: 'முடிந்துவிட்டது' };
+    }
+    const diff = event.endTime - now;
+    const hours = Math.floor(diff / (3600 * 1000));
+    const mins = Math.floor((diff % (3600 * 1000)) / (60 * 1000));
+    let rem = '';
+    if (hours > 24) {
+      const days = Math.floor(hours / 24);
+      rem = `${days} நாட்கள் ${hours % 24} மணி`;
+    } else if (hours > 0) {
+      rem = `${hours} மணி ${mins} நிமி`;
+    } else {
+      rem = `${mins} நிமிடம்`;
+    }
+
+    if (diff <= 15 * 60 * 1000) {
+      return { status: 'ending', label: '🟡 விரைவில் முடிவடைகிறது', remainingStr: 'மீதம்: ' + rem };
+    }
+    return { status: 'active', label: '🟢 செயலில் உள்ளது', remainingStr: 'மீதம்: ' + rem };
+  }
+
+  function getEventPlayers(eventId) {
+    try {
+      return JSON.parse(localStorage.getItem('tb_lb_players_' + eventId)) || [];
+    } catch(e) {
+      return [];
+    }
+  }
+
+  function saveEventPlayers(eventId, players) {
+    localStorage.setItem('tb_lb_players_' + eventId, JSON.stringify(players));
+  }
+
+  function savePlayerToLeaderboard(entry) {
+    const ev = getActiveEvent();
+    const players = getEventPlayers(ev.id);
+    players.push(entry);
+    // Sort: highest score first, then faster duration
+    players.sort((a, b) => {
+      if (b.totalScore !== a.totalScore) return b.totalScore - a.totalScore;
+      return (a.durationSec || 999) - (b.durationSec || 999);
+    });
+    saveEventPlayers(ev.id, players);
+  }
+
+  /* --------------------------------------------------------
+     6. GAME STATE ENGINE
+  -------------------------------------------------------- */
+  const gameState = {
+    playerName: "",
+    category: "kids",
+    questionIndex: 0,
+    questions: [],
+    currentQuestion: null,
+    currentStage: 0,           // 0: No clue, 1: Clue 1, 2: Clue 2, 3: Clue 3
+    availableScore: 3,         // 3 -> 2 -> 1 -> 0
+    questionScores: [0, 0, 0],
+    totalScore: 0,
+    stageSecondsTotal: 30,
+    stageSecondsLeft: 30,
+    timerInterval: null,
+    timerRunning: false,
+    clue1Used: false,
+    clue2Used: false,
+    clue3Used: false,
+    questionCompleted: false,
+    gameCompleted: false,
+    startTime: 0,
+    finishTime: 0
+  };
+
+  function setScreen(id) {
+    document.querySelectorAll('.view-screen').forEach(el => el.classList.remove('active'));
+    const target = document.getElementById(id);
+    if (target) target.classList.add('active');
+  }
+
+  function showToast(msg, isWrong = false) {
+    const toast = document.getElementById('gameToast');
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.className = isWrong ? 'game-toast' : 'game-toast info';
+    toast.style.display = 'block';
+    if (toast.timer) clearTimeout(toast.timer);
+    toast.timer = setTimeout(() => {
+      toast.style.display = 'none';
+    }, 2400);
+  }
+
+  function startSession(name, category) {
+    gameState.playerName = name || "வீரர்";
+    gameState.category = category;
+    const pool = [...QUESTION_BANK[category]].sort(() => 0.5 - Math.random());
+    gameState.questions = pool.slice(0, 3);
+    gameState.questionIndex = 0;
+    gameState.questionScores = [0, 0, 0];
+    gameState.totalScore = 0;
+    gameState.startTime = Date.now();
+    gameState.gameCompleted = false;
+
+    setScreen('viewQuestion');
+    loadQuestion(0);
+  }
+
+  function loadQuestion(idx) {
+    gameState.questionIndex = idx;
+    gameState.currentQuestion = gameState.questions[idx];
+    gameState.currentStage = 0;
+    gameState.availableScore = 3;
+    gameState.clue1Used = false;
+    gameState.clue2Used = false;
+    gameState.clue3Used = false;
+    gameState.questionCompleted = false;
+
+    const q = gameState.currentQuestion;
+
+    // Status Tags
+    document.getElementById('dispPlayerName').textContent = gameState.playerName;
+    document.getElementById('dispQNum').textContent = idx + 1;
+    document.getElementById('dispPotentialPtsLabel').textContent = 'கிடைக்கும் மதிப்பெண்:';
+    document.getElementById('dispPotentialPts').textContent = '3';
+
+    // Type / Category Statement
+    document.getElementById('dispQuestionType').textContent = q.type;
+
+    // Render Answer Blanks
+    const container = document.getElementById('wordsContainer');
+    container.innerHTML = '';
+    const words = q.answer.trim().split(/\s+/);
+
+    words.forEach(word => {
+      const group = document.createElement('div');
+      group.className = 'word-group';
+      const letters = extractTamilGraphemes(word);
+      letters.forEach(lt => {
+        const box = document.createElement('div');
+        box.className = 'char-box';
+        box.setAttribute('data-char', lt);
+        box.textContent = '□';
+        group.appendChild(box);
+      });
+      container.appendChild(group);
+    });
+
+    // Reset Clue Cards
+    const c1 = document.getElementById('clueCard1');
+    const c2 = document.getElementById('clueCard2');
+    const c3 = document.getElementById('clueCard3');
+
+    c1.className = 'clue-btn-card unlocked-btn';
+    c1.querySelector('.clue-card-head').textContent = '💡 குறிப்பு 1';
+    document.getElementById('clueText1').style.display = 'none';
+
+    c2.className = 'clue-btn-card';
+    c2.querySelector('.clue-card-head').textContent = '💡 குறிப்பு 2';
+    document.getElementById('clueText2').style.display = 'none';
+
+    c3.className = 'clue-btn-card';
+    c3.querySelector('.clue-card-head').textContent = '💡 குறிப்பு 3';
+    document.getElementById('clueText3').style.display = 'none';
+
+    // Reset Operator Controls
+    document.getElementById('btnCorrect').disabled = false;
+    document.getElementById('btnWrong').disabled = false;
+    document.getElementById('feedbackCard').style.display = 'none';
+
+    // Operator Peek Setup
+    const peek = document.getElementById('peekBox');
+    peek.textContent = `🎯 பதில்: ${q.answer}`;
+    peek.style.display = 'none';
+
+    // Start fresh stage timer automatically
+    startStageTimer();
+  }
+
+  /* --------------------------------------------------------
+     7. STAGE-BASED TIMER ENGINE
+  -------------------------------------------------------- */
+  function startStageTimer() {
+    stopStageTimer();
+    const tCfg = getTimerConfig();
+    const timerBox = document.getElementById('dispTimerBox');
+    const timerSec = document.getElementById('dispTimerSeconds');
+    const progressFill = document.getElementById('timerProgressBar');
+
+    if (tCfg.value === 0) {
+      // No timer mode
+      gameState.timerRunning = false;
+      timerBox.innerHTML = `<span>♾️</span> <span>நேரமில்லை</span>`;
+      timerBox.classList.remove('urgent');
+      progressFill.style.width = '100%';
+      return;
+    }
+
+    timerBox.innerHTML = `<span id="timerIcon">⏳</span> <span id="dispTimerSeconds">${tCfg.value}</span> விநாடி`;
+    timerBox.classList.remove('urgent');
+    progressFill.style.width = '100%';
+
+    gameState.stageSecondsTotal = tCfg.value;
+    gameState.stageSecondsLeft = tCfg.value;
+    gameState.timerRunning = true;
+
+    gameState.timerInterval = setInterval(() => {
+      if (!gameState.timerRunning || gameState.questionCompleted) {
+        clearInterval(gameState.timerInterval);
+        return;
+      }
+
+      gameState.stageSecondsLeft--;
+      const secEl = document.getElementById('dispTimerSeconds');
+      if (secEl) secEl.textContent = Math.max(0, gameState.stageSecondsLeft);
+
+      const pct = Math.max(0, (gameState.stageSecondsLeft / gameState.stageSecondsTotal) * 100);
+      progressFill.style.width = pct + '%';
+
+      if (gameState.stageSecondsLeft <= 5 && gameState.stageSecondsLeft > 0) {
+        document.getElementById('dispTimerBox').classList.add('urgent');
+        sfx.tick();
+      } else {
+        document.getElementById('dispTimerBox').classList.remove('urgent');
+      }
+
+      if (gameState.stageSecondsLeft <= 0) {
+        clearInterval(gameState.timerInterval);
+        gameState.timerRunning = false;
+        handleTimerExpired();
+      }
+    }, 1000);
+  }
+
+  function stopStageTimer() {
+    if (gameState.timerInterval) {
+      clearInterval(gameState.timerInterval);
+      gameState.timerInterval = null;
+    }
+    gameState.timerRunning = false;
+    const timerBox = document.getElementById('dispTimerBox');
+    if (timerBox) timerBox.classList.remove('urgent');
+  }
+
+  function handleTimerExpired() {
+    showToast('⏰ நேரம் முடிந்தது!', true);
+    sfx.wrong();
+
+    if (gameState.currentStage === 0) {
+      // Auto move to Clue 1
+      handleClue1(true);
+    } else if (gameState.currentStage === 1) {
+      // Auto move to Clue 2
+      handleClue2(true);
+    } else if (gameState.currentStage === 2) {
+      // Auto move to Clue 3
+      handleClue3(true);
+    } else {
+      // Stage 3 timer expired: reveal answer with 0 points
+      finishQuestionWithZero('⏰ நேரம் முடிந்தது! நேரம் கடந்துவிட்டது.');
+    }
+  }
+
+  /* --------------------------------------------------------
+     8. CLUE BUTTON INTERACTIONS
+  -------------------------------------------------------- */
+  function handleClue1(isAuto = false) {
+    if (gameState.questionCompleted || gameState.clue1Used) return;
+    sfx.init();
+
+    gameState.clue1Used = true;
+    gameState.currentStage = 1;
+    gameState.availableScore = 2;
+    document.getElementById('dispPotentialPts').textContent = '2';
+
+    const q = gameState.currentQuestion;
+    const c1 = document.getElementById('clueCard1');
+    c1.className = 'clue-btn-card revealed-clue';
+    c1.querySelector('.clue-card-head').textContent = '💡 குறிப்பு 1 (வெளிப்படுத்தப்பட்டது)';
+    const t1 = document.getElementById('clueText1');
+    t1.textContent = q.clues[0];
+    t1.style.display = 'block';
+
+    // Unlock Clue 2
+    document.getElementById('clueCard2').className = 'clue-btn-card unlocked-btn';
+
+    sfx.clue();
+    startStageTimer();
+  }
+
+  function handleClue2(isAuto = false) {
+    if (gameState.questionCompleted || !gameState.clue1Used || gameState.clue2Used) return;
+    sfx.init();
+
+    gameState.clue2Used = true;
+    gameState.currentStage = 2;
+    gameState.availableScore = 1;
+    document.getElementById('dispPotentialPts').textContent = '1';
+
+    const q = gameState.currentQuestion;
+    const c2 = document.getElementById('clueCard2');
+    c2.className = 'clue-btn-card revealed-clue';
+    c2.querySelector('.clue-card-head').textContent = '💡 குறிப்பு 2 (வெளிப்படுத்தப்பட்டது)';
+    const t2 = document.getElementById('clueText2');
+    t2.textContent = q.clues[1];
+    t2.style.display = 'block';
+
+    // Unlock Clue 3
+    document.getElementById('clueCard3').className = 'clue-btn-card unlocked-btn';
+
+    sfx.clue();
+    startStageTimer();
+  }
+
+  function handleClue3(isAuto = false) {
+    if (gameState.questionCompleted || !gameState.clue2Used || gameState.clue3Used) return;
+    sfx.init();
+
+    gameState.clue3Used = true;
+    gameState.currentStage = 3;
+    gameState.availableScore = 0;
+    document.getElementById('dispPotentialPts').textContent = '0';
+
+    const q = gameState.currentQuestion;
+    const c3 = document.getElementById('clueCard3');
+    c3.className = 'clue-btn-card revealed-clue';
+    c3.querySelector('.clue-card-head').textContent = '💡 குறிப்பு 3 (வெளிப்படுத்தப்பட்டது)';
+    const t3 = document.getElementById('clueText3');
+    t3.textContent = q.clues[2];
+    t3.style.display = 'block';
+
+    // Disable all clue buttons
+    document.querySelectorAll('.clue-btn-card').forEach(c => c.classList.remove('unlocked-btn'));
+
+    sfx.clue();
+    startStageTimer();
+  }
+
+  /* --------------------------------------------------------
+     9. ANSWER EVALUATION (சரி / தவறு)
+  -------------------------------------------------------- */
+  function handleCorrectAnswer() {
+    if (gameState.questionCompleted) return;
+    sfx.init();
+
+    gameState.questionCompleted = true;
+    stopStageTimer();
+
+    // Disable buttons immediately to prevent duplicate submissions
+    document.getElementById('btnCorrect').disabled = true;
+    document.getElementById('btnWrong').disabled = true;
+    document.querySelectorAll('.clue-btn-card').forEach(c => c.classList.remove('unlocked-btn'));
+
+    const awarded = gameState.availableScore;
+    gameState.questionScores[gameState.questionIndex] = awarded;
+
+    const q = gameState.currentQuestion;
+    const allBoxes = document.querySelectorAll('.char-box');
+
+    // Sequential Letter-by-Letter Reveal
+    allBoxes.forEach((box, i) => {
+      setTimeout(() => {
+        box.textContent = box.getAttribute('data-char');
+        box.classList.add('revealed');
+        sfx.tick();
+      }, i * 180);
+    });
+
+    const totalAnimTime = allBoxes.length * 180 + 150;
+
+    setTimeout(() => {
+      const fbCard = document.getElementById('feedbackCard');
+      const fbTitle = document.getElementById('feedbackTitle');
+
+      fbTitle.className = 'feedback-banner correct';
+      fbTitle.textContent = `🎉 சரியான பதில்! (+${awarded} மதிப்பெண்கள்)`;
+      sfx.correct();
+      triggerConfetti(2600);
+
+      document.getElementById('feedbackRef').textContent = `📖 வேதாகம குறிப்பு: ${q.ref}`;
+      document.getElementById('feedbackExp').textContent = `விளக்கம்: ${q.exp}`;
+
+      const btnN = document.getElementById('btnNextQ');
+      btnN.disabled = false;
+      btnN.textContent = (gameState.questionIndex < 2) ? '➡️ அடுத்த கேள்வி' : '🏆 முடிவுகளைக் காண்க';
+
+      fbCard.style.display = 'block';
+    }, totalAnimTime);
+  }
+
+  function handleWrongAnswer() {
+    if (gameState.questionCompleted) return;
+    sfx.init();
+
+    // If still in earlier stages, keep timer running and allow re-try or clue request
+    if (gameState.currentStage < 3) {
+      sfx.wrong();
+      showToast('❌ தவறான பதில்! தொடர்ந்து முயற்சிக்கவும்...', true);
+      // Timer continues running! Operator can press சரி later.
+      return;
+    }
+
+    // If at final Stage 3, marking wrong completes the question with 0 points
+    finishQuestionWithZero('❌ தவறான பதில்! விடை வெளிப்படுத்தப்பட்டது.');
+  }
+
+  function finishQuestionWithZero(reasonMsg) {
+    if (gameState.questionCompleted) return;
+    gameState.questionCompleted = true;
+    stopStageTimer();
+
+    document.getElementById('btnCorrect').disabled = true;
+    document.getElementById('btnWrong').disabled = true;
+    document.querySelectorAll('.clue-btn-card').forEach(c => c.classList.remove('unlocked-btn'));
+
+    gameState.questionScores[gameState.questionIndex] = 0;
+    const q = gameState.currentQuestion;
+    const allBoxes = document.querySelectorAll('.char-box');
+
+    allBoxes.forEach((box, i) => {
+      setTimeout(() => {
+        box.textContent = box.getAttribute('data-char');
+        box.classList.add('revealed');
+        sfx.tick();
+      }, i * 180);
+    });
+
+    const totalAnimTime = allBoxes.length * 180 + 150;
+
+    setTimeout(() => {
+      const fbCard = document.getElementById('feedbackCard');
+      const fbTitle = document.getElementById('feedbackTitle');
+
+      fbTitle.className = 'feedback-banner wrong';
+      fbTitle.textContent = `${reasonMsg} (⭐ +0)`;
+      sfx.wrong();
+
+      document.getElementById('feedbackRef').textContent = `📖 வேதாகம குறிப்பு: ${q.ref}`;
+      document.getElementById('feedbackExp').textContent = `விளக்கம்: ${q.exp}`;
+
+      const btnN = document.getElementById('btnNextQ');
+      btnN.disabled = false;
+      btnN.textContent = (gameState.questionIndex < 2) ? '➡️ அடுத்த கேள்வி' : '🏆 முடிவுகளைக் காண்க';
+
+      fbCard.style.display = 'block';
+    }, totalAnimTime);
+  }
+
+  function handleNextQuestion() {
+    sfx.init();
+    if (gameState.questionIndex < 2) {
+      loadQuestion(gameState.questionIndex + 1);
+    } else {
+      finishSession();
+    }
+  }
+
+  /* --------------------------------------------------------
+     10. SESSION FINISH & PRIZE CALCULATION
+  -------------------------------------------------------- */
+  function finishSession() {
+    stopStageTimer();
+    gameState.gameCompleted = true;
+    gameState.finishTime = Date.now();
+
+    const total = gameState.questionScores[0] + gameState.questionScores[1] + gameState.questionScores[2];
+    gameState.totalScore = total;
+
+    const durationSec = Math.max(1, Math.round((gameState.finishTime - gameState.startTime) / 1000));
+    const min = Math.floor(durationSec / 60);
+    const sec = durationSec % 60;
+    const durStr = min > 0 ? `${min} நிமி ${sec} விநாடி` : `${sec} விநாடி`;
+
+    const cfg = getConfig();
+    const title = document.getElementById('dispPrizeTitle');
+    const sub = document.getElementById('dispPrizeSub');
+
+    let prizeName = "பங்கேற்பு பரிசு";
+    let prizeMsg = "தொடர்ந்து வேதாகமத்தை வாசியுங்கள்! அடுத்த முறை வெற்றி நிச்சயம்!";
+
+    if (total >= cfg.p1) {
+      prizeName = "🥇 முதல் பரிசு";
+      prizeMsg = "வாழ்த்துக்கள்! முழு மதிப்பெண் பெற்று சாதனை படைத்துள்ளீர்கள்!";
+    } else if (total >= cfg.p2) {
+      prizeName = "🥈 இரண்டாம் பரிசு";
+      prizeMsg = "மிகச் சிறந்த வேதாகம அறிவு! அருமையாக விளையாடினீர்கள்!";
+    } else if (total >= cfg.p3) {
+      prizeName = "🥉 மூன்றாம் பரிசு";
+      prizeMsg = "சிறப்பான வெற்றி! வேதாகமத்தில் உங்கள் ஆர்வம் பாராட்டத்தக்கது!";
+    } else if (total >= cfg.p4) {
+      prizeName = "🎁 சிறப்பு பரிசு";
+      prizeMsg = "அருமையான முயற்சி! தொடர்ந்து வேதத்தை வாசியுங்கள்!";
+    }
+
+    const catName = (gameState.category === 'kids' ? 'குழந்தைகள்' : gameState.category === 'youth' ? 'இளைஞர்கள்' : 'பெரியவர்கள்');
+
+    // Update Result Screen Elements
+    document.getElementById('dispFinalName').textContent = gameState.playerName;
+    document.getElementById('dispFinalCategory').textContent = `பிரிவு: ${catName} | நேரம்: ${durStr}`;
+    document.getElementById('breakdownQ1').textContent = `${gameState.questionScores[0]} / 3`;
+    document.getElementById('breakdownQ2').textContent = `${gameState.questionScores[1]} / 3`;
+    document.getElementById('breakdownQ3').textContent = `${gameState.questionScores[2]} / 3`;
+    document.getElementById('dispFinalScore').textContent = total;
+    title.textContent = prizeName;
+    sub.textContent = prizeMsg;
+
+    // Save EVERY completed player to persistent storage
+    const activeEv = getActiveEvent();
+    const playerEntry = {
+      id: 'entry_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
+      playerName: gameState.playerName,
+      category: gameState.category,
+      categoryName: catName,
+      question1Score: gameState.questionScores[0],
+      question2Score: gameState.questionScores[1],
+      question3Score: gameState.questionScores[2],
+      totalScore: total,
+      prize: prizeName,
+      startTime: new Date(gameState.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      finishTime: new Date(gameState.finishTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      duration: durStr,
+      durationSec: durationSec,
+      eventId: activeEv.id,
+      timestamp: Date.now()
+    };
+    savePlayerToLeaderboard(playerEntry);
+
+    setScreen('viewPrize');
+    sfx.fanfare();
+    triggerConfetti(3500);
+  }
+
+  function resetForNextPlayer() {
+    sfx.init();
+    stopStageTimer();
+    document.getElementById('inputName').value = '';
+    const valMsg = document.getElementById('nameValidationMsg');
+    if (valMsg) valMsg.style.display = 'none';
+
+    gameState.playerName = '';
+    gameState.questionScores = [0, 0, 0];
+    gameState.totalScore = 0;
+    gameState.gameCompleted = false;
+
+    setScreen('viewName');
+    setTimeout(() => {
+      document.getElementById('inputName').focus();
+    }, 100);
+  }
+
+  /* --------------------------------------------------------
+     11. LEADERBOARD MODAL & EVENT ARCHIVING
+  -------------------------------------------------------- */
+  let currentLBFilter = 'all';
+
+  function renderLeaderboard() {
+    const activeEv = getActiveEvent();
+    const status = getEventStatus(activeEv);
+
+    // Event Header
+    document.getElementById('lbEventTitle').textContent = activeEv.name;
+    const badge = document.getElementById('lbEventBadge');
+    badge.className = `status-badge ${status.status}`;
+    badge.textContent = status.label;
+    document.getElementById('lbEventTimeLeft').textContent = `கால அவகாசம்: ${status.remainingStr}`;
+
+    // Players list
+    const allPlayers = getEventPlayers(activeEv.id);
+    const searchVal = (document.getElementById('lbSearchInput').value || '').trim().toLowerCase();
+
+    const filtered = allPlayers.filter(p => {
+      const matchCat = (currentLBFilter === 'all') || (p.category === currentLBFilter);
+      const matchSearch = !searchVal || (p.playerName && p.playerName.toLowerCase().includes(searchVal));
+      return matchCat && matchSearch;
+    });
+
+    document.getElementById('lbTotalPlayerCount').textContent = filtered.length;
+
+    // Podium (Top 3)
+    const podiumBox = document.getElementById('lbPodiumContainer');
+    podiumBox.innerHTML = '';
+    const top3 = filtered.slice(0, 3);
+
+    if (top3.length === 0) {
+      podiumBox.innerHTML = `<div style="grid-column:1/-1; text-align:center; color:#94a3b8; padding:15px;">இன்னும் வீரர்கள் விளையாடவில்லை.</div>`;
+    } else {
+      const ranks = [
+        { cls: 'gold', badge: '🥇 1-ஆம் இடம்' },
+        { cls: 'silver', badge: '🥈 2-ஆம் இடம்' },
+        { cls: 'bronze', badge: '🥉 3-ஆம் இடம்' }
+      ];
+      top3.forEach((p, idx) => {
+        const info = ranks[idx];
+        const card = document.createElement('div');
+        card.className = `podium-card ${info.cls}`;
+        card.innerHTML = `
+          <div class="podium-rank">${info.badge}</div>
+          <div class="podium-name" title="${p.playerName}">${p.playerName}</div>
+          <div class="podium-score">⭐ ${p.totalScore} / 9</div>
+          <div style="font-size:0.8rem; color:#cbd5e1;">${p.categoryName} (${p.duration || ''})</div>
+        `;
+        podiumBox.appendChild(card);
+      });
+    }
+
+    // Table: All Players
+    const tbody = document.getElementById('lbTableBody');
+    tbody.innerHTML = '';
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; color:#94a3b8; padding:20px;">பொருத்தமான வீரர்கள் கிடைக்கவில்லை.</td></tr>`;
+      return;
+    }
+
+    filtered.forEach((p, idx) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td style="font-weight:800; color:var(--gold-primary);">${idx + 1}</td>
+        <td style="font-weight:700;">${p.playerName}</td>
+        <td><span style="font-size:0.85rem; color:#94a3b8;">${p.categoryName}</span></td>
+        <td>${p.question1Score}</td>
+        <td>${p.question2Score}</td>
+        <td>${p.question3Score}</td>
+        <td style="font-weight:800; color:#facc15;">${p.totalScore} / 9</td>
+        <td style="font-size:0.85rem; color:#fde68a;">${p.prize}</td>
+        <td style="font-size:0.8rem; color:#94a3b8;">${p.finishTime || ''} (${p.duration || ''})</td>
+      `;
+      tbody.appendChild(row);
+    });
+  }
+
+  function handleNewEvent() {
+    if (!confirm("தற்போதைய நிகழ்வை காப்பகப்படுத்தி புதிய நிகழ்வைத் தொடங்க வேண்டுமா? பழைய முடிவுகள் அழிக்கப்படாது, வரலாற்றில் பாதுகாக்கப்படும்.")) {
+      return;
+    }
+
+    const currentEv = getActiveEvent();
+    const currentPlayers = getEventPlayers(currentEv.id);
+    const archives = getArchivedEvents();
+
+    // Archive current event
+    archives.push({
+      event: currentEv,
+      players: currentPlayers,
+      archivedAt: Date.now()
+    });
+    saveArchivedEvents(archives);
+
+    // Create fresh event
+    const newNum = archives.length + 1;
+    const pType = currentEv.periodType || '1d';
+    const durMs = getPeriodDurationMs(pType);
+    const newEv = {
+      id: 'event_' + Date.now(),
+      name: `நிகழ்வு ${newNum}`,
+      periodType: pType,
+      startTime: Date.now(),
+      endTime: Date.now() + durMs
+    };
+    saveActiveEvent(newEv);
+    saveEventPlayers(newEv.id, []);
+
+    showToast(`🆕 ${newEv.name} தொடங்கியது! பழைய நிகழ்வு காப்பகப்படுத்தப்பட்டது.`);
+    renderLeaderboard();
+  }
+
+  function renderHistoryEvents() {
+    const listEl = document.getElementById('historyEventsList');
+    const archives = getArchivedEvents();
+
+    if (!archives.length) {
+      listEl.innerHTML = `<p style="text-align:center; color:#94a3b8; padding:30px;">காப்பகப்படுத்தப்பட்ட பழைய நிகழ்வுகள் எதுவும் இல்லை.</p>`;
+      return;
+    }
+
+    let html = '';
+    archives.slice().reverse().forEach((item, revIdx) => {
+      const ev = item.event;
+      const players = item.players || [];
+      const topWinner = players.length > 0 ? `${players[0].playerName} (${players[0].totalScore}/9)` : 'வீரர்கள் இல்லை';
+      const dateStr = new Date(ev.startTime).toLocaleDateString() + ' - ' + new Date(ev.endTime).toLocaleDateString();
+
+      html += `
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(246,192,66,0.25); border-radius:12px; padding:15px; margin-bottom:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <strong style="color:var(--gold-primary); font-size:1.15rem;">${ev.name}</strong>
+              <span style="font-size:0.85rem; color:#94a3b8; margin-left:10px;">${dateStr}</span>
+            </div>
+            <div style="font-size:0.9rem; color:#facc15;">
+              பங்கேற்பாளர்கள்: ${players.length} | வெற்றியாளர்: ${topWinner}
+            </div>
+          </div>
+          <div style="margin-top:10px; max-height:160px; overflow-y:auto; border-top:1px dashed rgba(255,255,255,0.1); padding-top:8px;">
+            <table class="lb-table" style="font-size:0.85rem;">
+              <thead>
+                <tr><th>வரிசை</th><th>பெயர்</th><th>பிரிவு</th><th>மதிப்பெண்</th><th>பரிசு</th></tr>
+              </thead>
+              <tbody>
+                ${players.map((p, i) => `
+                  <tr>
+                    <td>${i + 1}</td>
+                    <td>${p.playerName}</td>
+                    <td>${p.categoryName}</td>
+                    <td style="color:#facc15; font-weight:800;">${p.totalScore} / 9</td>
+                    <td>${p.prize}</td>
+                  </tr>`).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>`;
+    });
+    listEl.innerHTML = html;
+  }
+
+  /* --------------------------------------------------------
+     12. EVENT BINDINGS & CONTROLLER
+  -------------------------------------------------------- */
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // 1. HOME SCREEN START BUTTON
+    document.getElementById('btnStartHome').addEventListener('click', () => {
+      sfx.init();
+      setScreen('viewName');
+      const input = document.getElementById('inputName');
+      const valMsg = document.getElementById('nameValidationMsg');
+      if (valMsg) valMsg.style.display = 'none';
+      setTimeout(() => input.focus(), 150);
+    });
+
+    // 2. NAME SCREEN VALIDATION & PROCEED BUTTON
+    const proceedWithName = () => {
+      sfx.init();
+      const input = document.getElementById('inputName');
+      const val = input.value.trim();
+      const valMsg = document.getElementById('nameValidationMsg');
+
+      if (!val) {
+        if (valMsg) valMsg.style.display = 'block';
+        input.focus();
+        sfx.wrong();
+        return;
+      }
+      if (valMsg) valMsg.style.display = 'none';
+      gameState.playerName = val;
+      setScreen('viewCategory');
+    };
+
+    document.getElementById('btnProceedName').addEventListener('click', proceedWithName);
+    document.getElementById('inputName').addEventListener('keydown', e => {
+      if (e.key === 'Enter') proceedWithName();
+    });
+
+    // 3. CATEGORY SELECTION BUTTONS (Kids, Youth, Adult)
+    document.querySelectorAll('.cat-card').forEach(card => {
+      card.addEventListener('click', () => {
+        sfx.init();
+        const cat = card.getAttribute('data-cat');
+        startSession(gameState.playerName, cat);
+      });
+    });
+
+    // 4. CLUE BUTTONS
+    document.getElementById('clueCard1').addEventListener('click', () => handleClue1());
+    document.getElementById('clueCard2').addEventListener('click', () => handleClue2());
+    document.getElementById('clueCard3').addEventListener('click', () => handleClue3());
+
+    // 5. OPERATOR DECISION BUTTONS (சரி / தவறு)
+    document.getElementById('btnCorrect').addEventListener('click', handleCorrectAnswer);
+    document.getElementById('btnWrong').addEventListener('click', handleWrongAnswer);
+
+    // 6. NEXT QUESTION BUTTON
+    document.getElementById('btnNextQ').addEventListener('click', handleNextQuestion);
+
+    // 7. NEXT PLAYER BUTTON
+    document.getElementById('btnNextPlayer').addEventListener('click', resetForNextPlayer);
+
+    // 8. OPERATOR PEEK BUTTON
+    document.getElementById('btnPeek').addEventListener('click', () => {
+      const box = document.getElementById('peekBox');
+      box.style.display = (box.style.display === 'none') ? 'inline' : 'none';
+    });
+
+    // 9. SOUND TOGGLE (Header + Modal)
+    const toggleSound = () => {
+      sfx.enabled = !sfx.enabled;
+      const str = sfx.enabled ? '🔊 ஒலி: ஆன்' : '🔇 ஒலி: ஆஃப்';
+      document.getElementById('btnSound').textContent = str;
+      const btnM = document.getElementById('btnSoundModal');
+      if (btnM) btnM.textContent = str;
+      if (sfx.enabled) sfx.tone(520, 'sine', 0.15, 0.1);
+    };
+    document.getElementById('btnSound').addEventListener('click', toggleSound);
+    const btnSM = document.getElementById('btnSoundModal');
+    if (btnSM) btnSM.addEventListener('click', toggleSound);
+
+    // 10. FULLSCREEN TOGGLE (Header + Modal)
+    const toggleFull = () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen();
+      }
+    };
+    document.getElementById('btnFull').addEventListener('click', toggleFull);
+    const btnFM = document.getElementById('btnFullModal');
+    if (btnFM) btnFM.addEventListener('click', toggleFull);
+
+    // 11. LEADERBOARD OPEN & CLOSE
+    const openLB = () => {
+      renderLeaderboard();
+      document.getElementById('lbActiveView').style.display = 'block';
+      document.getElementById('lbHistoryView').style.display = 'none';
+      document.getElementById('modalLB').classList.add('open');
+    };
+    document.getElementById('btnLB').addEventListener('click', openLB);
+    document.getElementById('btnLBFromPrize').addEventListener('click', openLB);
+    document.getElementById('btnCloseLB').addEventListener('click', () => {
+      document.getElementById('modalLB').classList.remove('open');
+    });
+
+    // Leaderboard Search & Category Filters
+    document.getElementById('lbSearchInput').addEventListener('input', renderLeaderboard);
+    document.querySelectorAll('.lb-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.lb-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentLBFilter = btn.getAttribute('data-filter');
+        renderLeaderboard();
+      });
+    });
+
+    // Leaderboard New Event & History Toggles
+    document.getElementById('btnNewEvent').addEventListener('click', handleNewEvent);
+    document.getElementById('btnToggleHistory').addEventListener('click', () => {
+      renderHistoryEvents();
+      document.getElementById('lbActiveView').style.display = 'none';
+      document.getElementById('lbHistoryView').style.display = 'block';
+    });
+    document.getElementById('btnBackToActiveLB').addEventListener('click', () => {
+      document.getElementById('lbActiveView').style.display = 'block';
+      document.getElementById('lbHistoryView').style.display = 'none';
+      renderLeaderboard();
+    });
+
+    // 12. SETTINGS CONFIG MODAL
+    document.getElementById('btnConfig').addEventListener('click', () => {
+      const pCfg = getConfig();
+      document.getElementById('cfgP1').value = pCfg.p1;
+      document.getElementById('cfgP2').value = pCfg.p2;
+      document.getElementById('cfgP3').value = pCfg.p3;
+      document.getElementById('cfgP4').value = pCfg.p4;
+
+      const tCfg = getTimerConfig();
+      const radio = document.querySelector(`input[name="cfgTimer"][value="${tCfg.value}"]`);
+      if (radio) {
+        radio.checked = true;
+      } else {
+        const customRadio = document.querySelector('input[name="cfgTimer"][value="custom"]');
+        if (customRadio) customRadio.checked = true;
+        document.getElementById('cfgTimerCustom').value = tCfg.value;
+      }
+
+      const activeEv = getActiveEvent();
+      const pSelect = document.getElementById('cfgEventPeriod');
+      if (pSelect) pSelect.value = activeEv.periodType || '1d';
+
+      document.getElementById('modalConfig').classList.add('open');
+    });
+
+    document.getElementById('btnCloseConfig').addEventListener('click', () => {
+      document.getElementById('modalConfig').classList.remove('open');
+    });
+
+    const periodSelect = document.getElementById('cfgEventPeriod');
+    if (periodSelect) {
+      periodSelect.addEventListener('change', () => {
+        const customBox = document.getElementById('cfgCustomPeriodBox');
+        if (customBox) {
+          customBox.style.display = (periodSelect.value === 'custom') ? 'grid' : 'none';
+        }
+      });
+    }
+
+    document.getElementById('btnSaveConfig').addEventListener('click', () => {
+      // Save Prize Thresholds
+      const p1 = parseInt(document.getElementById('cfgP1').value, 10) || 9;
+      const p2 = parseInt(document.getElementById('cfgP2').value, 10) || 8;
+      const p3 = parseInt(document.getElementById('cfgP3').value, 10) || 7;
+      const p4 = parseInt(document.getElementById('cfgP4').value, 10) || 6;
+      saveConfig({ p1, p2, p3, p4 });
+
+      // Save Timer Setting
+      const selectedTimer = document.querySelector('input[name="cfgTimer"]:checked');
+      let timerVal = 30;
+      if (selectedTimer) {
+        if (selectedTimer.value === 'custom') {
+          timerVal = parseInt(document.getElementById('cfgTimerCustom').value, 10) || 30;
+        } else {
+          timerVal = parseInt(selectedTimer.value, 10);
+        }
+      }
+      saveTimerConfig({ mode: 'seconds', value: timerVal });
+
+      // Save Event Period Setting
+      const activeEv = getActiveEvent();
+      const chosenPeriod = document.getElementById('cfgEventPeriod').value;
+      activeEv.periodType = chosenPeriod;
+      if (chosenPeriod === 'custom') {
+        const sVal = document.getElementById('cfgEventStart').value;
+        const eVal = document.getElementById('cfgEventEnd').value;
+        if (sVal) activeEv.startTime = new Date(sVal).getTime();
+        if (eVal) activeEv.endTime = new Date(eVal).getTime();
+      } else {
+        const dur = getPeriodDurationMs(chosenPeriod);
+        activeEv.endTime = activeEv.startTime + dur;
+      }
+      saveActiveEvent(activeEv);
+
+      document.getElementById('modalConfig').classList.remove('open');
+      showToast('⚙️ அமைப்புகள் சேமிக்கப்பட்டன!');
+    });
+
+    // 13. KEYBOARD SHORTCUTS FOR OPERATOR
+    window.addEventListener('keydown', e => {
+      if (e.target.tagName === 'INPUT') return;
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-backdrop').forEach(m => m.classList.remove('open'));
+        return;
+      }
+
+      const qScreenActive = document.getElementById('viewQuestion').classList.contains('active');
+
+      if (qScreenActive) {
+        if (e.key === '1') handleClue1();
+        else if (e.key === '2') handleClue2();
+        else if (e.key === '3') handleClue3();
+        else if (e.key.toLowerCase() === 'c' || e.key === 'Enter') {
+          const fb = document.getElementById('feedbackCard');
+          if (gameState.questionCompleted && fb.style.display !== 'none') {
+            document.getElementById('btnNextQ').click();
+          } else if (!document.getElementById('btnCorrect').disabled) {
+            handleCorrectAnswer();
+          }
+        } else if (e.key.toLowerCase() === 'x' || e.key.toLowerCase() === 'w') {
+          if (!document.getElementById('btnWrong').disabled) handleWrongAnswer();
+        } else if (e.key.toLowerCase() === 'p') {
+          document.getElementById('btnPeek').click();
+        }
+      }
+
+      if (e.key.toLowerCase() === 'm') {
+        document.getElementById('btnSound').click();
+      }
+    });
+
+  });
+  </script>
+</body>
+</html>
